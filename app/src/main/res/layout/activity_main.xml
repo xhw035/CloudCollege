@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#888" />
+
+    <com.yinglan.alphatabs.AlphaTabsIndicator
+        android:id="@+id/alphaIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <com.yinglan.alphatabs.AlphaTabView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:tabIconNormal="@drawable/tab_homepage_n"
+            app:tabIconSelected="@drawable/tab_homepage_p"
+            app:tabText="首页"
+            app:tabTextSize="14sp"
+            app:textColorNormal="@color/tabNormal"
+            app:textColorSelected="@color/tabSelected" />
+
+        <com.yinglan.alphatabs.AlphaTabView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:tabIconNormal="@drawable/tab_course_n"
+            app:tabIconSelected="@drawable/tab_course_p"
+            app:tabText="课程"
+            app:tabTextSize="14sp"
+            app:textColorNormal="@color/tabNormal"
+            app:textColorSelected="@color/tabSelected" />
+
+        <com.yinglan.alphatabs.AlphaTabView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:tabIconNormal="@drawable/tab_center_n"
+            app:tabIconSelected="@drawable/tab_center_p"
+            app:tabText="学习中心"
+            app:tabTextSize="14sp"
+            app:textColorNormal="@color/tabNormal"
+            app:textColorSelected="@color/tabSelected" />
+
+
+        <com.yinglan.alphatabs.AlphaTabView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:tabIconNormal="@drawable/tab_account_n"
+            app:tabIconSelected="@drawable/tab_account_p"
+            app:tabText="我的"
+            app:tabTextSize="14sp"
+            app:textColorNormal="@color/tabNormal"
+            app:textColorSelected="@color/tabSelected" />
+    </com.yinglan.alphatabs.AlphaTabsIndicator>
+</LinearLayout>
