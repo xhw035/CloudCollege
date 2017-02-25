@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">荆楚大学堂</string>
+
+    <string name="tob_home">首页</string>
+    <string name="tab_course">课程</string>
+    <string name="tab_center">学习中心</string>
+    <string name="tab_account">我的</string>
+
+
+
 </resources>
