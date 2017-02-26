@@ -32,11 +32,11 @@
             app:tabIconNormal="@drawable/tab_homepage_n"
             app:tabIconSelected="@drawable/tab_homepage_p"
             app:tabText="@string/tob_home"
-            app:tabTextSize="14sp"
+            app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
             app:textColorSelected="@color/tabSelected" />
 
-        <com.yinglan.alphatabs.AlphaTabView
+        <!--<com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
             app:tabText="@string/tab_course"
             app:tabTextSize="14sp"
             app:textColorNormal="@color/tabNormal"
-            app:textColorSelected="@color/tabSelected" />
+            app:textColorSelected="@color/tabSelected" />-->
 
         <com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
@@ -56,7 +56,7 @@
             app:tabIconNormal="@drawable/tab_center_n"
             app:tabIconSelected="@drawable/tab_center_p"
             app:tabText="@string/tab_center"
-            app:tabTextSize="14sp"
+            app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
             app:textColorSelected="@color/tabSelected" />
 
@@ -69,7 +69,7 @@
             app:tabIconNormal="@drawable/tab_account_n"
             app:tabIconSelected="@drawable/tab_account_p"
             app:tabText="@string/tab_account"
-            app:tabTextSize="14sp"
+            app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
             app:textColorSelected="@color/tabSelected" />
     </com.yinglan.alphatabs.AlphaTabsIndicator>

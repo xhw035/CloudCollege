@@ -37,13 +37,13 @@ public class MainActivity extends FragmentActivity {
         HomepageFragment homepageFragment = new HomepageFragment();
         DefaultFragment defaultFragment1 = new DefaultFragment();
         DefaultFragment defaultFragment2 = new DefaultFragment();
-        DefaultFragment defaultFragment3 = new DefaultFragment();
+        //DefaultFragment defaultFragment3 = new DefaultFragment();
 
         final ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(homepageFragment);
         fragmentList.add(defaultFragment1);
         fragmentList.add(defaultFragment2);
-        fragmentList.add(defaultFragment3);
+        //fragmentList.add(defaultFragment3);
 
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

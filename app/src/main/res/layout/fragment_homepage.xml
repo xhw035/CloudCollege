@@ -8,5 +8,15 @@
    <include
        layout="@layout/view_homepage_top"/>
 
+   <com.bigkoo.convenientbanner.ConvenientBanner
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/convenientBanner"
+       android:layout_width="match_parent"
+       android:layout_height="180dp"
+       android:background="@color/titleBardark"
+       app:canLoop="true"/>
+
+   <include
+       layout="@layout/view_homepage_coursetype"/>
 
 </LinearLayout>
