@@ -1,10 +1,11 @@
-package com.cloud.college;
+package com.cloud.college.uitl;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
+import com.cloud.college.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**

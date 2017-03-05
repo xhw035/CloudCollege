@@ -1,9 +1,10 @@
-package com.cloud.college;
+package com.cloud.college.core;
 
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.os.Handler;
 
+import com.cloud.college.R;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;

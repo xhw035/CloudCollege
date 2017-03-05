@@ -3,20 +3,64 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
    <include
        layout="@layout/view_homepage_top"/>
 
-   <com.bigkoo.convenientbanner.ConvenientBanner
-       xmlns:app="http://schemas.android.com/apk/res-auto"
-       android:id="@+id/convenientBanner"
-       android:layout_width="match_parent"
-       android:layout_height="180dp"
-       android:background="@color/titleBardark"
-       app:canLoop="true"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-   <include
-       layout="@layout/view_homepage_coursetype"/>
+            <com.bigkoo.convenientbanner.ConvenientBanner
+               xmlns:app="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/convenientBanner"
+               android:layout_width="match_parent"
+               android:layout_height="180dp"
+               android:background="@color/titleBardark"
+               app:canLoop="true"/>
+
+            <include
+                layout="@layout/view_homepage_coursetype"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:background="#F5F9FA"
+                >
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/titleBarlight"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="最受欢迎排行榜"
+                    />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/view_homepage_chart"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.cloud.college;
+package com.cloud.college.core;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,6 +28,8 @@ import com.ToxicBakery.viewpager.transforms.ZoomOutTranformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.cloud.college.R;
+import com.cloud.college.uitl.NetworkImageHolderView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
