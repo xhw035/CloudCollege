@@ -45,7 +45,7 @@ import cn.carbs.android.avatarimageview.library.AvatarImageView;
  * DESC:首页对应的Fragment
  */
 
-public class HomepageFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener  {
+public class indexFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener  {
 
     @BindView(R.id.convenientBanner) ConvenientBanner convenientBanner;
 
@@ -82,7 +82,7 @@ public class HomepageFragment extends Fragment implements ViewPager.OnPageChange
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homepage,container,false);
+        View view = inflater.inflate(R.layout.fragment_index,container,false);
         ButterKnife.bind(this,view);
         return view;
     }
