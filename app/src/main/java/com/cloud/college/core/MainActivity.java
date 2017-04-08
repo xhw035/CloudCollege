@@ -35,7 +35,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initView() {
-        HomepageFragment homepageFragment = new HomepageFragment();
+        indexFragment homepageFragment = new indexFragment();
         DefaultFragment defaultFragment1 = new DefaultFragment();
         DefaultFragment defaultFragment2 = new DefaultFragment();
         //DefaultFragment defaultFragment3 = new DefaultFragment();
