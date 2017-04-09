@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/ViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/separationLine" />
+        android:background="@color/separationLine"/>
 
     <com.yinglan.alphatabs.AlphaTabsIndicator
         android:id="@+id/alphaIndicator"
@@ -34,7 +35,7 @@
             app:tabText="@string/tob_home"
             app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
-            app:textColorSelected="@color/tabSelected" />
+            app:textColorSelected="@color/tabSelected"/>
 
         <!--<com.yinglan.alphatabs.AlphaTabView
             android:layout_width="0dp"
@@ -58,7 +59,7 @@
             app:tabText="@string/tab_center"
             app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
-            app:textColorSelected="@color/tabSelected" />
+            app:textColorSelected="@color/tabSelected"/>
 
 
         <com.yinglan.alphatabs.AlphaTabView
@@ -71,6 +72,7 @@
             app:tabText="@string/tab_account"
             app:tabTextSize="16sp"
             app:textColorNormal="@color/tabNormal"
-            app:textColorSelected="@color/tabSelected" />
+            app:textColorSelected="@color/tabSelected"/>
     </com.yinglan.alphatabs.AlphaTabsIndicator>
+
 </LinearLayout>
