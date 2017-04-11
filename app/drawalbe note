@@ -1,0 +1,5 @@
+
+HDPI ( High Density Screen, 240 DPI  WVGA (480×800),FWVGA (480×854))，其图标大小为 72 x 72 px
+XHDPI ( Extra-high density screen, 320 DPI，720P（1280*720）） )，其图标大小为 96 x 96 px
+XXHDPI( xx-high density screen, 480 DPI 1080p（1920*1080 )，其图标大小为144 x 144 px
+XXXHDPI( xxx-high density screen, 640 DPI 4K（3840×2160）)，其图标大小为192 x 192 px
