@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cloud.college">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
 
     <application
@@ -17,7 +21,7 @@
         tools:replace="android:supportsRtl"
         android:theme="@style/AppTheme">
 
-        <activity
+       <!-- <activity
             android:name=".core.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MainActivityTheme">
@@ -26,18 +30,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
+        </activity>-->
 
-     <!--   <activity
+        <activity
             android:name=".core.DetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/DetailActivityTheme">
+            android:theme="@style/DetailActivityTheme"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>-->
+        </activity>
 
 
     </application>
