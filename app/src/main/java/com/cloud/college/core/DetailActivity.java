@@ -1,15 +1,12 @@
 package com.cloud.college.core;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cloud.college.R;
@@ -33,7 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final String video_5 = "rtmpt://123.207.237.185:5080/oflaDemo/0.Android集成开发环境搭建/1.在Mac平台搭建Android集成开发环境.mp4";
 
     @BindView(R.id.detailToolbar) Toolbar toolbar;
-    //@BindView(R.id.playerView) IjkPlayerView playerView;
+    @BindView(R.id.playerView) IjkPlayerView playerView;
 
 
     @Override
@@ -41,12 +38,11 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        toolbar.inflateMenu(R.menu.detail_toolbar_menu);
-        //initView();
-        //initEvent();
+        initView();
+        initEvent();
     }
 
-    /*@Override
+    @Override
     protected void onResume() {
         super.onResume();
         playerView.onResume();
@@ -88,12 +84,12 @@ public class DetailActivity extends AppCompatActivity {
 
 
     private void initView() {
-        //setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.detail_toolbar_menu);
         Glide.with(this).load(playerThumb).fitCenter().into(playerView.mPlayerThumb);
         playerView.init()
+        .setToolbar(toolbar)
         .setTitle("这是个跑马灯TextView，标题要足够长足够长足够长足够长足够长足够长足够长足够长才会跑")
-        .setSaveDir("CloudCollege/screenshot")
+        .setMscreenShotDir("CloudCollege/screenshot")
         .setVideoSource(video_1, video_2, video_3, video_4, video_5)
         .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_BD);
     }
@@ -120,7 +116,7 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }*/
+    }
 
 
 }

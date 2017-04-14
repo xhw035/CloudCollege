@@ -7,7 +7,7 @@ android {
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
         versionName "1.0.0"
@@ -30,12 +30,11 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    // ijkplayer
+    // Danmaku
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.5'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.5'
     //compile 'com.github.Rukey7:ijkplayer-armv7a:0.7.5'
-    // Danmaku
-    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
-
+    compile 'com.yangxiaobin:handsomeToast:1.0.0'
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
 }

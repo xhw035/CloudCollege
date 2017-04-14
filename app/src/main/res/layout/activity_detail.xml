@@ -17,15 +17,14 @@
         android:background="@color/titleBardark"
         >
 
-        <com.dl7.player.widgets.MarqueeTextView
+        <com.cloud.college.widgets.MarqueeTextView
             android:id="@+id/toolbar_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            android:layout_marginRight="2dp"
-            android:layout_marginLeft="2dp"
-            android:maxLines="1"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:singleLine="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:focusable="true"
@@ -34,7 +33,7 @@
             android:fadingEdge="horizontal"
             android:textColor="@color/white"
             android:text="课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情"
-            android:textSize="21sp"
+            android:textSize="18sp"
             />
 
     </android.support.v7.widget.Toolbar>
@@ -45,6 +44,10 @@
         android:orientation="vertical"
         android:background="@color/white">
 
+        <com.dl7.player.media.IjkPlayerView
+            android:id="@+id/playerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
 
     </LinearLayout>
 

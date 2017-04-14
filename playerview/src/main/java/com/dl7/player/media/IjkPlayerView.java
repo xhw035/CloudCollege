@@ -25,7 +25,9 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -61,6 +63,7 @@ import com.dl7.player.utils.StringUtils;
 import com.dl7.player.utils.WindowUtils;
 import com.dl7.player.widgets.MarqueeTextView;
 import com.dl7.player.widgets.ShareDialog;
+import com.handsome.library.T;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -229,6 +232,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
     //----------------自己添加：手动自动控制全屏-------------------
     public static int originalOrientoin=1;
     private PlayerOrientoinListener playerOrientoinListener;
+    private Toolbar mToolbar = null;
 
 
     public IjkPlayerView(Context context) {
@@ -515,6 +519,16 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
      */
     public IjkPlayerView setTitle(String title) {
         mTvTitle.setText(title);
+        return this;
+    }
+
+    /**
+     * 设置 ToolBar
+     *
+     * @param toolbar
+     */
+    public IjkPlayerView setToolbar(Toolbar toolbar) {
+        mToolbar = toolbar;
         return this;
     }
 
@@ -925,8 +939,10 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         originalOrientoin=mAttachActivity.getRequestedOrientation();
         if (WindowUtils.getScreenOrientation(mAttachActivity) == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             mAttachActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            _handleToolBar(false);
         } else {
             mAttachActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            _handleToolBar(true);
         }
     }
 
@@ -940,6 +956,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         // 处理弹幕相关视图
         _toggleDanmakuView(isFullscreen);
         _handleActionBar(isFullscreen);
+        _handleToolBar(isFullscreen);
         _changeHeight(isFullscreen);
         mIvFullscreen.setSelected(isFullscreen);
         mHandler.post(mHideBarRunnable);
@@ -1012,6 +1029,21 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
                 supportActionBar.hide();
             } else {
                 supportActionBar.show();
+            }
+        }
+    }
+
+    /**
+     * 隐藏/显示 ToolBar
+     *
+     * @param isFullscreen
+     */
+    private void _handleToolBar(boolean isFullscreen) {
+        if (mToolbar != null) {
+            if (isFullscreen) {
+                mToolbar.setVisibility(View.GONE);
+            } else {
+                mToolbar.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -2361,27 +2393,26 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
             if (mDialogClickListener != null) {
                 mDialogClickListener.onShare(bitmap, mVideoView.getUri());
             }
-            if(mSaveDir!=null) {
-                File file = new File(mSaveDir, System.currentTimeMillis() + ".jpg");
+            if(mscreenShotDir !=null) {
+                File file = new File(mscreenShotDir, mTvTitle.getText().toString()+"-"+ DateFormat.format("yyMMddHHmmss",System.currentTimeMillis())+ ".jpg");
                 try {
                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                     bos.flush();
                     bos.close();
-                    //Toasty.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
-                    //Toasty.custom(mAttachActivity, "图片已成功保存到:" + file.getAbsolutePath(), null, Color.parseColor("#FFFFFF"), Color.parseColor("#24DE8A"), Toast.LENGTH_SHORT,false ,true).show();
+                    T.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath());
                     //Toast.makeText(mAttachActivity, "图片已成功保存到:" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
-                    //Toasty.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
+                    T.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath());
                     //Toast.makeText(mAttachActivity, "保存图片到SD卡失败：" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                     System.out.println("保存图片到SD卡失败：" + file.getAbsolutePath());
                 }
             }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                //Toasty.warning(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限", Toast.LENGTH_SHORT, true).show();
+                T.info(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限");
                 //Toast.makeText(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限" , Toast.LENGTH_SHORT).show();
                 System.out.println("保存失败，截图功能需要授予读写SD卡权限，请授予该权限");
             }else{
-                //Toasty.info(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT, true).show();
+                T.info(mAttachActivity, "保存图片到SD卡失败，目录不存在");
                 //Toast.makeText(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT).show();
                 System.out.println("保存图片到SD卡失败，目录不存在");
             }
@@ -2394,7 +2425,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         }
     };
     // 截图保存路径
-    private File mSaveDir=null;
+    private File mscreenShotDir =null;
 
     /**
      * 初始化电量、锁屏、时间处理
@@ -2411,7 +2442,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         mIvScreenshot = (ImageView) findViewById(R.id.iv_screenshot);
         mIvScreenshot.setOnClickListener(this);
         /*if (SDCardUtils.isAvailable()) {
-            _createSaveDir(SDCardUtils.getRootPath() + File.separator + "IjkPlayView");
+            _createDir(SDCardUtils.getRootPath() + File.separator + "IjkPlayView");
         }*/
     }
 
@@ -2458,35 +2489,31 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
     /**
      * 设置截图保存路径
      *
-     * @param pathstr
+     * @param str
      */
-    public IjkPlayerView setSaveDir(String str) {
-        System.out.println("执行了setSaveDir:1"+str);
-        _createSaveDir(str);
+    public IjkPlayerView setMscreenShotDir(String str) {
+        _createDir(str);
         return this;
     }
 
     /**
      * 创建目录
      *
-     * @param path
+     * @param str
      */
-    private void _createSaveDir(String str) {
-        //System.out.println("2:"+str);
+    private void _createDir(String str) {
         if(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             // 创建一个文件夹对象，赋值为外部存储器的目录
             File sdcardDir = Environment.getExternalStorageDirectory();
             //得到一个路径，内容是sdcard的文件夹路径和名字
             String absPath = sdcardDir.getPath() + "/" + str;
-            //System.out.println("absPath:"+absPath);
 
-             mSaveDir = new File(absPath);
-            if (!mSaveDir.exists()) {
-                boolean ret =mSaveDir.mkdirs();
-                //System.out.println(absPath+"~创建"+ret);
-            } else if (!mSaveDir.isDirectory()) {
-                mSaveDir.delete();
-                mSaveDir.mkdirs();
+             mscreenShotDir = new File(absPath);
+            if (!mscreenShotDir.exists()) {
+                boolean ret = mscreenShotDir.mkdirs();
+            } else if (!mscreenShotDir.isDirectory()) {
+                mscreenShotDir.delete();
+                mscreenShotDir.mkdirs();
             }
         }
     }
