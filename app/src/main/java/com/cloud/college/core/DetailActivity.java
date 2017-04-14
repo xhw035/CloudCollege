@@ -1,9 +1,11 @@
 package com.cloud.college.core;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,19 +41,61 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-        initView();
-        initEvent();
+        toolbar.inflateMenu(R.menu.detail_toolbar_menu);
+        //initView();
+        //initEvent();
     }
 
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        playerView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        playerView.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        playerView.onDestroy();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        playerView.configurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (playerView.handleVolumeKey(keyCode)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (playerView.onBackPressed()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+
     private void initView() {
+        //setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.detail_toolbar_menu);
-       /*
         Glide.with(this).load(playerThumb).fitCenter().into(playerView.mPlayerThumb);
         playerView.init()
-        .setTitle("这是个跑马灯TextView，标题要足够长足够长足够长足够长足够长足够长足够长足够长才会跑。-(゜ -゜)つロ 乾杯~")
-        .setSaveDir("荆楚大联盟")
+        .setTitle("这是个跑马灯TextView，标题要足够长足够长足够长足够长足够长足够长足够长足够长才会跑")
+        .setSaveDir("CloudCollege/screenshot")
         .setVideoSource(video_1, video_2, video_3, video_4, video_5)
-        .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_BD);*/
+        .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_BD);
     }
 
     private void initEvent() {
@@ -76,7 +120,7 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
+    }*/
 
 
 }

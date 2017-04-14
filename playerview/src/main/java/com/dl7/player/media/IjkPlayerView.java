@@ -74,7 +74,6 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
 import master.flame.danmaku.controller.DrawHandler;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.loader.ILoader;
@@ -2369,20 +2368,20 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                     bos.flush();
                     bos.close();
-                    Toasty.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
+                    //Toasty.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
                     //Toasty.custom(mAttachActivity, "图片已成功保存到:" + file.getAbsolutePath(), null, Color.parseColor("#FFFFFF"), Color.parseColor("#24DE8A"), Toast.LENGTH_SHORT,false ,true).show();
                     //Toast.makeText(mAttachActivity, "图片已成功保存到:" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
-                    Toasty.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
+                    //Toasty.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath(), Toast.LENGTH_SHORT, true).show();
                     //Toast.makeText(mAttachActivity, "保存图片到SD卡失败：" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                     System.out.println("保存图片到SD卡失败：" + file.getAbsolutePath());
                 }
             }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                Toasty.warning(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限", Toast.LENGTH_SHORT, true).show();
+                //Toasty.warning(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限", Toast.LENGTH_SHORT, true).show();
                 //Toast.makeText(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限" , Toast.LENGTH_SHORT).show();
                 System.out.println("保存失败，截图功能需要授予读写SD卡权限，请授予该权限");
             }else{
-                Toasty.info(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT, true).show();
+                //Toasty.info(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT, true).show();
                 //Toast.makeText(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT).show();
                 System.out.println("保存图片到SD卡失败，目录不存在");
             }

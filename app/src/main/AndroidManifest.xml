@@ -34,8 +34,7 @@
 
         <activity
             android:name=".core.DetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/DetailActivityTheme"
+
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>

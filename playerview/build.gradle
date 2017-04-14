@@ -36,7 +36,6 @@ dependencies {
     //compile 'com.github.Rukey7:ijkplayer-armv7a:0.7.5'
     // Danmaku
     compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
-    compile 'com.github.GrenderG:Toasty:1.1.4'
-    compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
+
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
 }
