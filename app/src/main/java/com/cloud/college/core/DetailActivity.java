@@ -1,7 +1,10 @@
 package com.cloud.college.core;
 
+import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -10,8 +13,21 @@ import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.cloud.college.R;
+import com.cloud.college.widgets.ScaleTransitionPagerTitleView;
 import com.dl7.player.media.IjkPlayerView;
 import com.sdsmdg.tastytoast.TastyToast;
+
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.BezierPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,16 +38,20 @@ import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
 
+    @BindView(R.id.detailToolbar) Toolbar toolbar;
+    @BindView(R.id.playerView) IjkPlayerView playerView;
+    @BindView(R.id.detailViewpager) ViewPager mViewPager;
+
     private static final String playerThumb = "http://www.maiziedu.com/uploads/course/2016/04/Activity.jpg";
-    private static final String video_1 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/小苹果.mp4";
-    private static final String video_2 = "rtmp://123.207.237.185:5080/oflaDemo/mv/无尽的爱.mp4";
-    private static final String video_3 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/道士下山.mov";
+    private static final String video_1 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/FuntouchOS2.5.mp4";
+    private static final String video_2 = "rtmp://123.207.237.185:5080/oflaDemo/mv/yellow.mp4";
+    private static final String video_3 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/See You Again.mp4";
     private static final String video_4 = "rtmp://123.207.237.185/oflaDemo/0.Android集成开发环境搭建/2.在Windows平台搭建Android集成开发环境.mp4";
     private static final String video_5 = "rtmpt://123.207.237.185:5080/oflaDemo/0.Android集成开发环境搭建/1.在Mac平台搭建Android集成开发环境.mp4";
 
-    @BindView(R.id.detailToolbar) Toolbar toolbar;
-    @BindView(R.id.playerView) IjkPlayerView playerView;
-
+    private static final String[] pagerTitle = new String[]{"目录", "介绍", "评论"};
+    private List<String> titleList = Arrays.asList(pagerTitle);
+    private DetailPagerAdapter mExamplePagerAdapter = new DetailPagerAdapter(titleList);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +105,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void initView() {
         toolbar.inflateMenu(R.menu.detail_toolbar_menu);
+
+        //============================处理视频播放器=============================
         Glide.with(this).load(playerThumb).fitCenter().into(playerView.mPlayerThumb);
         playerView.init()
         .setToolbar(toolbar)
@@ -92,6 +114,49 @@ public class DetailActivity extends AppCompatActivity {
         .setMscreenShotDir("CloudCollege/screenshot")
         .setVideoSource(video_1, video_2, video_3, video_4, video_5)
         .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_BD);
+
+        //========================处理下方ViewPager和MagicIndicator==========================
+        mViewPager = (ViewPager) findViewById(R.id.detailViewpager);
+        mViewPager.setAdapter(mExamplePagerAdapter);
+        initMagicIndicator();
+    }
+
+    private void initMagicIndicator() {
+        MagicIndicator magicIndicator = (MagicIndicator) findViewById(R.id.magic_indicator);
+        magicIndicator.setBackgroundColor(Color.WHITE);
+        CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setAdjustMode(true);
+        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+            @Override
+            public int getCount() {
+                return titleList == null ? 0 : titleList.size();
+            }
+
+            @Override
+            public IPagerTitleView getTitleView(Context context, final int index) {
+                SimplePagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
+                simplePagerTitleView.setText(titleList.get(index));
+                simplePagerTitleView.setTextSize(20);
+                simplePagerTitleView.setNormalColor(Color.BLACK);
+                simplePagerTitleView.setSelectedColor(getResources().getColor(R.color.main));
+                simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mViewPager.setCurrentItem(index);
+                    }
+                });
+                return simplePagerTitleView;
+            }
+
+            @Override
+            public IPagerIndicator getIndicator(Context context) {
+                BezierPagerIndicator indicator = new BezierPagerIndicator(context);
+                indicator.setColors(getResources().getColor(R.color.main));
+                return indicator;
+            }
+        });
+        magicIndicator.setNavigator(commonNavigator);
+        ViewPagerHelper.bind(magicIndicator, mViewPager);
     }
 
     private void initEvent() {
