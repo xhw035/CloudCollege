@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -61,27 +62,58 @@
             android:layout_marginTop="0dp" />
 
         <!--============ViewPager内容区===============-->
-        <ScrollView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fadeScrollbars="false"
-            android:background="@color/background_gray"
             >
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/detailViewpager"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="false"
+                android:scrollbars="none"
+            >
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:background="@color/blue"
-                    />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        </ScrollView>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/detailViewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+                    />
+                </LinearLayout>
+
+
+            </ScrollView>
+
+            <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
+                android:id="@+id/expandableBtu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                app:aebStartAngleDegree="90"
+                app:aebEndAngleDegree="90"
+                app:aebMainButtonRotateDegree="-225"
+                app:aebAnimDurationMillis="175"
+                app:aebMainButtonRotateAnimDurationMillis="300"
+                app:aebMainButtonSizeDp="55dp"
+                app:aebSubButtonSizeDp="45dp"
+                app:aebButtonElevation="8dp"
+                app:aebButtonGapDp="25dp"
+                app:aebIsSelectionMode="false"
+                app:aebRippleEffect="true"
+                app:aebRippleColor="@color/light"
+                app:aebMaskBackgroundColor="@android:color/transparent"
+                app:aebBlurBackground="true"
+                app:aebBlurRadius="5"
+                />
+
+        </FrameLayout>
 
 
     </LinearLayout>

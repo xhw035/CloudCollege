@@ -15,4 +15,6 @@
     <color name="titleBarlight">#24DE8A</color>
     <color name="titleBardark">#2BC17A</color>
     <color name="main">#2BC17A</color>
+    <color name="light">#2BC17A</color>
+    <color name="transparent">#00000000</color>
 </resources>

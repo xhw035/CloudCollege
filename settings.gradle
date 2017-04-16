@@ -1,1 +1,1 @@
-include ':app', ':playerview', ':magicindicator'
+include ':app', ':playerview', ':magicindicator', ':PulsFloatingButton'
