@@ -1,5 +1,6 @@
 package com.cloud.college.core;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -161,7 +162,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
 
         //convenientBanner.setCanLoop(false);
         String transforemerName = transformerList.get((int)(Math.random()*14));
-        Toast.makeText(getActivity(),"监听到翻到第"+position+":"+transforemerName,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"监听到翻到第"+position+":"+transforemerName,Toast.LENGTH_SHORT).show();
         System.out.println(transforemerName);
         try {
             Class cls = Class.forName("com.ToxicBakery.viewpager.transforms." + transforemerName);
@@ -183,7 +184,11 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getActivity(),"点击了第"+position+"个",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"点击了第"+position+"个",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(),DetailActivity.class);
+        startActivity(intent);
     }
+
+
 
 }

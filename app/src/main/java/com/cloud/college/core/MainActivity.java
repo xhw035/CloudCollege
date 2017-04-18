@@ -1,10 +1,12 @@
 package com.cloud.college.core;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.cloud.college.R;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
@@ -64,5 +66,10 @@ public class MainActivity extends FragmentActivity {
 
     private void initEvent() {
 
+    }
+
+    public void onTest(View view){
+        Intent intent = new Intent(this,DetailActivity.class);
+        startActivity(intent);
     }
 }

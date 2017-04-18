@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-v18/values-v18.xml",
+        "outputFile": "E:\\GraduationDesign\\CloudCollege\\magicindicator\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v18\\values-v18.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 99
                 },
                 "from": {
-                    "file": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/values-v18/values-v18.xml",
+                    "file": "C:\\Users\\xiaohuawen\\.android\\build-cache\\042cece0f3dbee1ecb96f10ba371018e08ecd122\\output\\res\\values-v18\\values-v18.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

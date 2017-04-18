@@ -326,7 +326,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         mAudioManager = (AudioManager) mAttachActivity.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         // 亮度
-        try {
+        /*try {
             int e = Settings.System.getInt(mAttachActivity.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
             float progress = 1.0F * (float) e / 255.0F;
             WindowManager.LayoutParams layout = mAttachActivity.getWindow().getAttributes();
@@ -334,7 +334,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
             mAttachActivity.getWindow().setAttributes(layout);
         } catch (Settings.SettingNotFoundException var7) {
             var7.printStackTrace();
-        }
+        }*/
         // 进度
         mPlayerSeek.setMax(MAX_VIDEO_SEEK);
         mPlayerSeek.setOnSeekBarChangeListener(mSeekListener);

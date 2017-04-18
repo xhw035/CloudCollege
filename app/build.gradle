@@ -50,5 +50,4 @@ dependencies {
     compile project(':magicindicator')
     //compile 'com.github.uin3566:AllAngleExpandableButton:v1.2.0'
     compile project(':PulsFloatingButton')
-
 }

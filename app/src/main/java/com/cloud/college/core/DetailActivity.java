@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private static final String playerThumb = "http://www.maiziedu.com/uploads/course/2016/04/Activity.jpg";
     private static final String video_1 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/FuntouchOS2.5.mp4";
-    private static final String video_2 = "rtmp://123.207.237.185:5080/oflaDemo/mv/山水之间.mp4";
+    private static final String video_2 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/时光里的百度.flv";
     private static final String video_3 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/SeeYouAgain.mp4";
     private static final String video_4 = "rtmp://123.207.237.185/oflaDemo/0.Android集成开发环境搭建/2.在Windows平台搭建Android集成开发环境.mp4";
     private static final String video_5 = "rtmpt://123.207.237.185:5080/oflaDemo/0.Android集成开发环境搭建/1.在Mac平台搭建Android集成开发环境.mp4";
@@ -63,6 +64,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
+        //WindowManager.LayoutParams attributes = getWindow().getAttributes();
+        //getWindow().setAttributes(attributes);
         initView();
         initEvent();
     }
