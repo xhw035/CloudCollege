@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <android.support.v4.view.ViewPager
+                    <com.cloud.college.widgets.MyViewPager
                         android:id="@+id/detailViewpager"
                         android:layout_width="match_parent"
                         android:layout_height="500dp"

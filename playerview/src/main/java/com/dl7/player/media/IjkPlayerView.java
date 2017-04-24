@@ -63,7 +63,6 @@ import com.dl7.player.utils.StringUtils;
 import com.dl7.player.utils.WindowUtils;
 import com.dl7.player.widgets.MarqueeTextView;
 import com.dl7.player.widgets.ShareDialog;
-import com.handsome.library.T;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -77,6 +76,7 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import master.flame.danmaku.controller.DrawHandler;
 import master.flame.danmaku.controller.IDanmakuView;
 import master.flame.danmaku.danmaku.loader.ILoader;
@@ -2400,19 +2400,19 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                     bos.flush();
                     bos.close();
-                    T.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath());
+                    Toasty.success(mAttachActivity, "图片保存成功:" + file.getAbsolutePath()).show();
                     //Toast.makeText(mAttachActivity, "图片已成功保存到:" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
-                    T.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath());
+                    Toasty.error(mAttachActivity, "图片保存失败:" + file.getAbsolutePath()).show();
                     //Toast.makeText(mAttachActivity, "保存图片到SD卡失败：" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                     System.out.println("保存图片到SD卡失败：" + file.getAbsolutePath());
                 }
             }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                T.info(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限");
+                Toasty.info(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限").show();
                 //Toast.makeText(mAttachActivity, "保存失败，截图功能需要授予读写SD卡权限，请授予该权限" , Toast.LENGTH_SHORT).show();
                 System.out.println("保存失败，截图功能需要授予读写SD卡权限，请授予该权限");
             }else{
-                T.info(mAttachActivity, "保存图片到SD卡失败，目录不存在");
+                Toasty.info(mAttachActivity, "保存图片到SD卡失败，目录不存在").show();
                 //Toast.makeText(mAttachActivity, "保存图片到SD卡失败，目录不存在", Toast.LENGTH_SHORT).show();
                 System.out.println("保存图片到SD卡失败，目录不存在");
             }

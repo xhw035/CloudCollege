@@ -42,7 +42,6 @@ dependencies {
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
     //compile(name:'playerview-release',ext:'aar')
     compile project(':playerview')
-    compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:24.2.1'
     //compile 'com.github.hackware1993:MagicIndicator:1.5.0'
@@ -50,4 +49,7 @@ dependencies {
     compile project(':magicindicator')
     //compile 'com.github.uin3566:AllAngleExpandableButton:v1.2.0'
     compile project(':PulsFloatingButton')
+    compile project(':magictimeline')
+    //关于toastd的依赖，本项目有3个，在ijkplayerview中还一个HandsomeToast
+    compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
 }

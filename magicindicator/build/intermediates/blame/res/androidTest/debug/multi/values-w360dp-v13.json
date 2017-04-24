@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\GraduationDesign\\CloudCollege\\magicindicator\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-w360dp-v13\\values-w360dp-v13.xml",
+        "outputFile": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-w360dp-v13/values-w360dp-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 105
                 },
                 "from": {
-                    "file": "C:\\Users\\xiaohuawen\\.android\\build-cache\\042cece0f3dbee1ecb96f10ba371018e08ecd122\\output\\res\\values-w360dp-v13\\values-w360dp-v13.xml",
+                    "file": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/values-w360dp-v13/values-w360dp-v13.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
