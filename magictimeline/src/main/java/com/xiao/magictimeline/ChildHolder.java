@@ -29,6 +29,8 @@ public class ChildHolder extends BasicViewHolder {
     @Override
     public void bindHolder(CatalogModel catalogModel) {
         title.setText(catalogModel.getChildName());
+        title.setTextColor(catalogModel.getFontColor());
         videoTime.setText(catalogModel.getVideoTime());
+        videoTime.setTextColor(catalogModel.getFontColor());
     }
 }

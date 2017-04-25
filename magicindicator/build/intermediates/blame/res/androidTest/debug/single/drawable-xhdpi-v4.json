@@ -100,12 +100,12 @@
         "source": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/drawable-xhdpi-v4/abc_list_divider_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png",
-        "source": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png"
-    },
-    {
         "merged": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_popup_background_mtrl_mult.9.png",
         "source": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/drawable-xhdpi-v4/abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png",
+        "source": "/Users/xiao/.android/build-cache/f82499788594dabe8d2634e9a54504bba55cc42d/output/res/drawable-xhdpi-v4/abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "/Users/xiao/Desktop/GraduationDesign/CloudCollege/magicindicator/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png",

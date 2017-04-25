@@ -25,7 +25,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public   interface OnItemClickListener{
         //void onItemLongClick(View view,int position){};
-        void  onTitleClick(View view, int position);
+        void  onTitleClick(ChildHolder holder, int position);
         void  onDownloadClick(View view, int position);
     }
 
@@ -99,7 +99,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onClick(View v) {
                     int getlayoutposition = holder.getLayoutPosition();
                     if(listener!=null)
-                        listener.onDownloadClick(holder.itemView, getlayoutposition);
+                        listener.onDownloadClick(((ChildHolder) holder).dwonload, getlayoutposition);
                 }
             });
 
@@ -130,7 +130,7 @@ public class CatalogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     //Toast.makeText(mContext, mList.get(holder.getLayoutPosition()).getChildName(), Toast.LENGTH_SHORT).show();
                     int getlayoutposition = holder.getLayoutPosition();
                     if(listener!=null)
-                        listener.onTitleClick(((ChildHolder) holder).title,getlayoutposition);
+                        listener.onTitleClick(((ChildHolder) holder),getlayoutposition);
                 }
             });
         }

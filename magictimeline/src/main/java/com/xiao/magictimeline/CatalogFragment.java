@@ -21,6 +21,7 @@ public class CatalogFragment extends Fragment {
     private final CatalogAdapter.OnItemClickListener listener;
     private RecyclerView mRecyclerView;
     private List<CatalogModel> list;
+    public  CatalogAdapter adpter;
 
     public CatalogFragment(List<CatalogModel> list,CatalogAdapter.OnItemClickListener listener) {
         this.list = list;
@@ -43,7 +44,7 @@ public class CatalogFragment extends Fragment {
             }
         });
 
-        CatalogAdapter adpter = new CatalogAdapter(getActivity(),list,listener);
+        adpter = new CatalogAdapter(getActivity(),list,listener);
         mRecyclerView.setAdapter(adpter);
 
         return view;

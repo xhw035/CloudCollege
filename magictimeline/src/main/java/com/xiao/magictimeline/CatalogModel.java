@@ -1,5 +1,7 @@
 package com.xiao.magictimeline;
 
+import android.graphics.Color;
+
 /**
  * Created by xiao on 2017/4/22.
  */
@@ -10,17 +12,12 @@ public class CatalogModel {
 
     protected int type;
     protected String gruopName;
+
     protected String childName;
-
-    public String getVideoTime() {
-        return videoTime;
-    }
-
-    public void setVideoTime(String videoTime) {
-        this.videoTime = videoTime;
-    }
-
     protected String videoTime;
+    protected int fontColor = Color.BLACK;
+    protected String URL_M;
+    protected String URL_H;
 
     public int getType() {
         return type;
@@ -46,6 +43,35 @@ public class CatalogModel {
         this.childName = childName;
     }
 
+    public String getVideoTime() {
+        return videoTime;
+    }
 
+    public void setVideoTime(String videoTime) {
+        this.videoTime = videoTime;
+    }
 
+    public int getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(int fontColor) {
+        this.fontColor = fontColor;
+    }
+
+    public String getURL_M() {
+        return URL_M;
+    }
+
+    public void setURL_M(String URL_M) {
+        this.URL_M = URL_M;
+    }
+
+    public String getURL_H() {
+        return URL_H;
+    }
+
+    public void setURL_H(String URL_H) {
+        this.URL_H = URL_H;
+    }
 }

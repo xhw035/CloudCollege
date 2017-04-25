@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.cloud.college.R;
@@ -23,9 +23,9 @@ import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
 import com.fangxu.allangleexpandablebutton.ButtonData;
 import com.fangxu.allangleexpandablebutton.ButtonEventListener;
 import com.sdsmdg.tastytoast.TastyToast;
-import com.xiao.magictimeline.CatalogAdapter;
 import com.xiao.magictimeline.CatalogFragment;
 import com.xiao.magictimeline.CatalogModel;
+import com.xiao.magictimeline.ChildHolder;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -44,6 +44,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 
+import static com.xiao.magictimeline.CatalogAdapter.OnItemClickListener;
+
 /**
  * Created by xiao on 2017/4/9.
  */
@@ -55,15 +57,16 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.detailViewpager) MyViewPager mViewPager;
 
     private static final String playerThumb = "http://www.maiziedu.com/uploads/course/2016/04/Activity.jpg";
-    private static final String video_1 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/华为大揭秘1.mp4";
-    private static final String video_2 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/时光里的百度.flv";
-    private static final String video_3 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/速度与激情8.flv";
-    private static final String video_4 = "rtmpt://123.207.237.185/oflaDemo/mv/小米MIX概念手机背后的故事.mp4";
-    private static final String video_5 = "rtmpt://123.207.237.185:5080/oflaDemo/0.Android集成开发环境搭建/1.在Mac平台搭建Android集成开发环境.mp4";
+    private static final String video_1 = "rtmpt://123.207.237.185:5080/oflaDemo/it/时光里的百度.flv";
+    private static final String video_2 = "rtmpt://123.207.237.185:5080/oflaDemo/mv/SeeYouAgain.mp4";
+    private static final String video_3 = "rtmpt://123.207.237.185:5080/oflaDemo/电影/速度与激情8.flv";
+    private static final String video_4 = "rtmpt://123.207.237.185/oflaDemo/手机/小米MIX概念手机背后的故事.mp4";
+    private static final String video_5 = "rtmpt://123.207.237.185:5080/oflaDemo/Android视频/0.Android集成开发环境搭建/1.在Mac平台搭建Android集成开发环境.mp4";
 
     private static final String[] pagerTitle = new String[]{"目录", "介绍", "评论"};
     private List<String> titleList = Arrays.asList(pagerTitle);
-    private DetailPagerAdapter mDetailPagerAdapter = new DetailPagerAdapter(titleList);
+    List<CatalogModel> catalogList;
+    CatalogFragment catalogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,34 +132,29 @@ public class DetailActivity extends AppCompatActivity {
         .setVideoSource(video_1, video_2, video_3, video_4, video_5)
         .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_BD);
 
-
         //========================处理下方ViewPager,MagicIndicator,加号==========================
         mViewPager = (MyViewPager) findViewById(R.id.detailViewpager);
-        //mViewPager.setAdapter(mDetailPagerAdapter);
         initViewPager();
         initMagicIndicator();
         initPlusButton();
     }
 
-    public class MyListener implements CatalogAdapter.OnItemClickListener{
-
+    /*public class MyListener implements CatalogAdapter.OnItemClickListener{
 
         @Override
         public void onTitleClick(View view, int position) {
             Toasty.info(getApplicationContext(),((TextView)view).getText()).show();
-            //Toast.makeText(getApplicationContext(),"test",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onDownloadClick(View view, int position) {
             Toasty.success(getApplicationContext(),"download").show();
-            //Toast.makeText(getApplicationContext(),"download",Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
     private void initViewPager() {
 
-        List<CatalogModel> list = new ArrayList<CatalogModel>();
+        catalogList = new ArrayList<CatalogModel>();
         for (int i = 0; i < 20; i++) {
             CatalogModel catalogModel = new CatalogModel();
             if(i==0||i==5||i==11)
@@ -164,20 +162,42 @@ public class DetailActivity extends AppCompatActivity {
             else
                 catalogModel.setType(CatalogModel.TYPE_CHILD);
             if(catalogModel.getType()== CatalogModel.TYPE_GROUP)
-                catalogModel.setGruopName("组名称很长很长很长很长很长很"+i);
+                catalogModel.setGruopName("章节名称"+i);
             if(catalogModel.getType()== CatalogModel.TYPE_CHILD){
-                catalogModel.setChildName("子项名称很长很长很长很长很长"+i);
+                catalogModel.setChildName("课程名称很长很长很长很长很长"+i);
                 catalogModel.setVideoTime("12:"+i);
+                catalogModel.setURL_M(video_1);
+                catalogModel.setURL_H(video_2);
             }
-            list.add(catalogModel);
+            catalogList.add(catalogModel);
         }
 
-        /*CatalogAdapter.OnItemClickListener listenster =
-                new*/
+        OnItemClickListener listener=  new OnItemClickListener(){
+            @Override
+            public void onTitleClick(ChildHolder holder, int position) {
+                for (int i = 0; i < catalogList.size(); i++) {
+                    catalogList.get(i).setFontColor(Color.BLACK);
+                    if(i==position)
+                        catalogList.get(i).setFontColor(Color.parseColor("#2BC17A"));
+                }
+                catalogFragment.adpter.notifyDataSetChanged();
 
+                playerView.stop();
+                playerView
+                .setTitle(catalogList.get(position).getChildName())
+                .setVideoSource(null, catalogList.get(position).getURL_M(), catalogList.get(position).getURL_H(), null, null)
+                .setMediaQuality(IjkPlayerView.MEDIA_QUALITY_HIGH)
+                .start();
+            }
 
+            @Override
+            public void onDownloadClick(View view, int position) {
+                Toasty.success(getApplicationContext(),"download").show();
+                ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.bg_download_gray));
+            }
+        };
 
-        CatalogFragment catalogFragment = new CatalogFragment(list,new MyListener());
+        catalogFragment = new CatalogFragment(catalogList,listener);
         DefaultFragment defaultFragment1 = new DefaultFragment();
         DefaultFragment defaultFragment2 = new DefaultFragment();
 
@@ -319,7 +339,6 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
