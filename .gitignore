@@ -1,8 +1,11 @@
 *.iml
 .gradle
 .idea
-/.idea/
 /build
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
+/app/build/
+!/magicindicator/build/
+!/magictimeline/build/
+!/playerview/build/
+!/PulsFloatingButton/build/
+!/toasty/build/
