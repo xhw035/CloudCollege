@@ -1,8 +1,9 @@
 *.iml
-.gradle
-.idea
-/build
 /local.properties
+.gradle/
+.idea/
+
+/build
 /app/build/
 !/magicindicator/build/
 !/magictimeline/build/
