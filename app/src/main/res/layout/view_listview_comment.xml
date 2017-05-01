@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="horizontal"
+    >
+    <!--================左边头像区==============-->
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/commHeadImg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/chart_img4"
+        app:riv_corner_radius="20dp"
+        app:riv_oval="false"
+    />
+
+    <!--================右边昵称时间内容区==============-->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/commNickName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试"
+                android:ellipsize="middle"
+                android:textColor="@color/lirhtFont"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/commTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:maxLines="1"
+                android:minLines="1"
+                android:text="停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试"
+                android:ellipsize="middle"
+                android:textColor="@color/lirhtFont"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/commStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

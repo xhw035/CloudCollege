@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:maxLines="1"
+        android:minLines="1"
+        android:text="我的评分"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        />
+
+    <com.iarcuschin.simpleratingbar.SimpleRatingBar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/simpleRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="5dp"
+        app:srb_borderColor="@color/dark"
+        app:srb_fillColor="@color/light"
+        app:srb_isIndicator="false"
+        app:srb_numberOfStars="5"
+        app:srb_pressedBorderColor="#338e3c"
+        app:srb_pressedFillColor="#00c853"
+        app:srb_rating="3.5"
+        app:srb_starBorderWidth="6"
+        app:srb_starCornerRadius="8"
+        app:srb_starSize="25dp"
+        app:srb_stepSize="0.5"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/divideBg"
+        />
+
+</LinearLayout>

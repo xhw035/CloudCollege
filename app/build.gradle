@@ -50,6 +50,9 @@ dependencies {
     //compile 'com.github.uin3566:AllAngleExpandableButton:v1.2.0'
     compile project(':PulsFloatingButton')
     compile project(':magictimeline')
-    //关于toastd的依赖，本项目有3个，在ijkplayerview中还一个HandsomeToast
+    //关于toastd的依赖，本项目有2个
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
+    compile 'com.iarcuschin:simpleratingbar:0.1.5'
+    compile 'com.hedgehog.ratingbar:app:1.1.2'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 }

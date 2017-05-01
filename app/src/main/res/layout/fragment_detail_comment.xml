@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ListView
+        android:id="@+id/commentListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:clickable="false"
+        android:scrollbars="none"
+        android:divider="@color/divideBg"
+        android:dividerHeight="0px"
+        />
+
+</LinearLayout>

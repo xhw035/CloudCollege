@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Author: xiao(xhw219@163.com)
@@ -24,6 +25,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends FragmentActivity {
 
+    private Unbinder unbinder;
     @BindView(R.id.ViewPager) ViewPager viewPager;
     @BindView(R.id.alphaIndicator) AlphaTabsIndicator alphaTabsIndicator;
 
@@ -31,9 +33,15 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         initView();
         initEvent();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     private void initView() {

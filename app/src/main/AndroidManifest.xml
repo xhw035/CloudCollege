@@ -13,7 +13,7 @@
 
 
     <application
-        android:name=".core.MyApplication"
+        android:name="com.cloud.college.core.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"

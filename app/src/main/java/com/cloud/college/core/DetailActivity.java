@@ -42,6 +42,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import es.dmoral.toasty.Toasty;
 
 import static com.xiao.magictimeline.CatalogAdapter.OnItemClickListener;
@@ -52,6 +53,7 @@ import static com.xiao.magictimeline.CatalogAdapter.OnItemClickListener;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private Unbinder unbinder;
     @BindView(R.id.detailToolbar) Toolbar toolbar;
     @BindView(R.id.playerView) IjkPlayerView playerView;
     @BindView(R.id.detailViewpager) MyViewPager mViewPager;
@@ -72,7 +74,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         //WindowManager.LayoutParams attributes = getWindow().getAttributes();
         //getWindow().setAttributes(attributes);
         initView();
@@ -95,6 +97,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         playerView.onDestroy();
+        unbinder.unbind();
     }
 
     @Override
@@ -198,13 +201,13 @@ public class DetailActivity extends AppCompatActivity {
         };
 
         catalogFragment = new CatalogFragment(catalogList,listener);
-        DefaultFragment defaultFragment1 = new DefaultFragment();
-        DefaultFragment defaultFragment2 = new DefaultFragment();
+        IntroductionFragment introductionFragment = new IntroductionFragment();
+        CommentFragment commentFragment = new CommentFragment();
 
         final ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(catalogFragment);
-        fragmentList.add(defaultFragment1);
-        fragmentList.add(defaultFragment2);
+        fragmentList.add(introductionFragment);
+        fragmentList.add(commentFragment);
 
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

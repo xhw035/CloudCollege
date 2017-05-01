@@ -8,13 +8,18 @@
     <color name="black">#000000</color>
 
     <color name="separationLine">#888</color>
+    <color name="divideBg">#F0F4F5</color>
 
     <color name="tabSelected">#2CC17B</color>
     <color name="tabNormal">#000000</color>
 
+    <color name="lirhtFont">#636E80</color>
+
     <color name="titleBarlight">#24DE8A</color>
     <color name="titleBardark">#2BC17A</color>
-    <color name="main">#2BC17A</color>
-    <color name="light">#2BC17A</color>
+
+    <color name="main">#24DE8A</color>
+    <color name="light">#24DE8A</color>
+    <color name="dark">#2BC17A</color>
     <color name="transparent">#00000000</color>
 </resources>
