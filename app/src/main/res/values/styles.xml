@@ -3,10 +3,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
-    <style name="MainActivityTheme" parent="AppTheme">
+    <style name="ColorStatusBar" parent="AppTheme">
     </style>
 
-    <style name="DetailActivityTheme" parent="AppTheme">
+    <style name="TranslucentStatus" parent="AppTheme">
     </style>
 
 </resources>

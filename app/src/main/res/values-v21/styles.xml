@@ -3,13 +3,13 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
-    <style name="MainActivityTheme" parent="AppTheme">
+    <style name="ColorStatusBar" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <!--<item name="android:statusBarColor">@color/titleBardark</item>-->
     </style>
 
-    <style name="DetailActivityTheme" parent="AppTheme">
+    <style name="TranslucentStatus" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>

@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 
@@ -432,7 +431,13 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         }
     }
 
-    private void expand() {
+    private  boolean state = false;
+    public  boolean isExpanded(){
+        return state;
+    }
+
+    public void expand() {
+        state = true;
         if (expandValueAnimator.isRunning()) {
             expandValueAnimator.cancel();
         }
@@ -443,7 +448,9 @@ public class AllAngleExpandableButton extends View implements ValueAnimator.Anim
         }
     }
 
-    private void collapse() {
+
+    public void collapse() {
+        state = false;
         if (collapseValueAnimator.isRunning()) {
             collapseValueAnimator.cancel();
         }

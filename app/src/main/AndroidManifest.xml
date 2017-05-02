@@ -22,9 +22,9 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".core.MainActivity"
+            android:name="com.cloud.college.core.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainActivityTheme">
+            android:theme="@style/ColorStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -33,13 +33,16 @@
         </activity>
 
         <activity
-            android:name=".core.DetailActivity"
-            android:theme="@style/DetailActivityTheme"
+            android:name="com.cloud.college.core.DetailActivity"
+            android:theme="@style/TranslucentStatus"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
 
-        </activity>
-
+        <activity
+            android:name="com.cloud.college.core.SubmitCommActivity"
+            android:theme="@style/TranslucentStatus"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustResize|stateVisible"/>
 
     </application>
 

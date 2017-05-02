@@ -1,6 +1,7 @@
 package com.cloud.college.core;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ import static com.xiao.magictimeline.CatalogAdapter.OnItemClickListener;
 public class DetailActivity extends AppCompatActivity {
 
     private Unbinder unbinder;
+    @BindView(R.id.expandableBtn) AllAngleExpandableButton plusButton;
     @BindView(R.id.detailToolbar) Toolbar toolbar;
     @BindView(R.id.playerView) IjkPlayerView playerView;
     @BindView(R.id.detailViewpager) MyViewPager mViewPager;
@@ -116,6 +118,10 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(plusButton.isExpanded()){
+            plusButton.collapse();
+            return;
+        }
         if (playerView.onBackPressed()) {
             return;
         }
@@ -264,7 +270,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void initPlusButton() {
-        final AllAngleExpandableButton button = (AllAngleExpandableButton) findViewById(R.id.expandableBtu);
         final List<ButtonData> buttonDatas = new ArrayList<>();
         int[] drawable = {R.drawable.img_plus, R.drawable.img_download, R.drawable.img_comment, R.drawable.img_heart};
         int[] color = {R.color.main, R.color.transparent, R.color.transparent, R.color.red};
@@ -278,29 +283,8 @@ public class DetailActivity extends AppCompatActivity {
             buttonData.setBackgroundColorId(this, color[i]);
             buttonDatas.add(buttonData);
         }
-        button.setButtonDatas(buttonDatas);
-        setListener(button);
-    }
 
-    private void setListener(AllAngleExpandableButton button) {
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                Toasty.info(getApplicationContext(),"clicked index:" + index).show();
-            }
-
-            @Override
-            public void onExpand() {
-                playerView.editVideo();
-                //playerView.setBackground(getDrawable(R.drawable.playerview_fg));
-            }
-
-            @Override
-            public void onCollapse() {
-                playerView.recoverFromEditVideo();
-                //playerView.setBackground(null);
-            }
-        });
+        plusButton.setButtonDatas(buttonDatas);
     }
 
     private void initEvent() {
@@ -326,10 +310,10 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        //---------------------------视频下方的ViewPager-------------------------------
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -342,6 +326,34 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+
+        //---------------------------加号按钮-------------------------------
+        plusButton.setButtonEventListener(new ButtonEventListener() {
+            @Override
+            public void onButtonClicked(int index) {
+                Toasty.info(getApplicationContext(),"clicked index:" + index).show();
+                if(index == 2) {
+                    mViewPager.setCurrentItem(2);
+                    Intent intent = new Intent(DetailActivity.this,SubmitCommActivity.class);
+                    startActivity(intent);
+                    //底部弹起动画
+                    overridePendingTransition(R.anim.activity_open,0);
+                }
+            }
+
+            @Override
+            public void onExpand() {
+                playerView.editVideo();
+                //playerView.setBackground(getDrawable(R.drawable.playerview_fg));
+            }
+
+            @Override
+            public void onCollapse() {
+                playerView.recoverFromEditVideo();
+                //playerView.setBackground(null);
             }
         });
     }

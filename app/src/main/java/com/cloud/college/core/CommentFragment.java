@@ -36,6 +36,7 @@ public class CommentFragment extends Fragment {
 
     private Unbinder mUnbinder;
     private ListView commentListView;
+    private CommentAdapter adapter;
     @BindView(R.id.simpleRatingBar)SimpleRatingBar simpleRatingBar;
 
     @Override
@@ -62,7 +63,7 @@ public class CommentFragment extends Fragment {
             model.setCommentStr("我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅");
             mlist.add(model);
         }
-        CommentAdapter adapter = new CommentAdapter(getActivity(),mlist);
+        adapter = new CommentAdapter(getActivity(),mlist);
         commentListView.setAdapter(adapter);
     }
 
