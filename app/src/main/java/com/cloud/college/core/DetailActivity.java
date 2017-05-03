@@ -71,6 +71,8 @@ public class DetailActivity extends AppCompatActivity {
     private List<String> titleList = Arrays.asList(pagerTitle);
     List<CatalogModel> catalogList;
     CatalogFragment catalogFragment;
+    IntroductionFragment introductionFragment;
+    CommentFragment commentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,7 +164,7 @@ public class DetailActivity extends AppCompatActivity {
     }*/
 
     private void initViewPager() {
-
+        //=======================初始化时间轴目录数据和监听器=========================
         catalogList = new ArrayList<CatalogModel>();
         for (int i = 0; i < 20; i++) {
             CatalogModel catalogModel = new CatalogModel();
@@ -205,10 +207,11 @@ public class DetailActivity extends AppCompatActivity {
                 ((ImageView)view).setBackground(getResources().getDrawable(R.drawable.bg_download_gray));
             }
         };
-
         catalogFragment = new CatalogFragment(catalogList,listener);
-        IntroductionFragment introductionFragment = new IntroductionFragment();
-        CommentFragment commentFragment = new CommentFragment();
+
+        //=========================简介和评论Fragment==============================
+        introductionFragment = new IntroductionFragment();
+        commentFragment = new CommentFragment();
 
         final ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(catalogFragment);
@@ -336,9 +339,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onButtonClicked(int index) {
                 Toasty.info(getApplicationContext(),"clicked index:" + index).show();
                 if(index == 2) {
-                    mViewPager.setCurrentItem(2);
                     Intent intent = new Intent(DetailActivity.this,SubmitCommActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
                     //底部弹起动画
                     overridePendingTransition(R.anim.activity_open,0);
                 }
@@ -358,5 +360,15 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case RESULT_OK:
+                commentFragment.refresh();
+                mViewPager.setCurrentItem(2);
+                break;
+            default:
+                break;
+        }
+    }
 
 }

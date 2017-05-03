@@ -77,6 +77,11 @@ public class CommentFragment extends Fragment {
     public void onRatingBarClick(View v) {
         info(getActivity(), "您的评分为：" + simpleRatingBar.getRating()).show();
     }
+
+    public void refresh(){
+        //====================需要重新联网拉数据并刷新list=============================
+        //adapter.notifyDataSetChanged();
+    }
 }
 
 class CommentModel{
