@@ -31,7 +31,7 @@
         app:srb_numberOfStars="5"
         app:srb_pressedBorderColor="#338e3c"
         app:srb_pressedFillColor="#00c853"
-        app:srb_rating="3.5"
+        app:srb_rating="0"
         app:srb_starBorderWidth="6"
         app:srb_starCornerRadius="8"
         app:srb_starSize="25dp"

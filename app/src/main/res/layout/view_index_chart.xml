@@ -13,12 +13,12 @@
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard1"
+            android:tag="0"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:onClick="onTest"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp">
@@ -31,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img1"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle1"
                     android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Android开发权威装逼指南"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -48,6 +48,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard2"
+            android:tag="1"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img2"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle2"
                     android:layout_width="wrap_content"
@@ -74,7 +75,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="C++开发屌丝程序猿"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -88,6 +89,7 @@
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard3"
+            android:tag="2"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -105,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img3"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle3"
                     android:layout_width="wrap_content"
@@ -114,7 +116,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="IOS从入门到放弃"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -122,6 +124,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard4"
+            android:tag="3"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -139,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img4"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle4"
                     android:layout_width="wrap_content"
@@ -148,7 +151,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Linux入门到开机"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -162,6 +165,7 @@
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard5"
+            android:tag="4"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -179,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img5"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle5"
                     android:layout_width="wrap_content"
@@ -188,7 +192,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="从删MySQL数据库到跑路"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -196,6 +200,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard6"
+            android:tag="5"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -213,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img6"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle6"
                     android:layout_width="wrap_content"
@@ -222,7 +227,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="如何正确的用单反装逼"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -236,6 +241,7 @@
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard7"
+            android:tag="6"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -253,7 +259,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img7"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle7"
                     android:layout_width="wrap_content"
@@ -262,7 +268,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Unity游戏开发攻城狮"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -270,6 +276,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard8"
+            android:tag="7"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -287,7 +294,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img8"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle8"
                     android:layout_width="wrap_content"
@@ -296,7 +303,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="Maya是个什么玩意"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -310,6 +317,7 @@
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard9"
+            android:tag="8"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -327,7 +335,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img9"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle9"
                     android:layout_width="wrap_content"
@@ -336,7 +344,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="野路子独立音乐人"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>
@@ -344,6 +352,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/chartCard10"
+            android:tag="9"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -361,7 +370,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/chart_img10"/>
+                    android:src="@drawable/img_deafult"/>
                 <TextView
                     android:id="@+id/chartTitle10"
                     android:layout_width="wrap_content"
@@ -370,7 +379,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:minLines="2"
-                    android:text="UI从菜鸡到射鸡湿之路"
+                    android:text="未加到数据..."
                     android:textColor="@color/black"
                     android:textSize="14sp"/>
             </LinearLayout>

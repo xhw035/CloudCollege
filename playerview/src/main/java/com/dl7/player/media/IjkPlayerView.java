@@ -549,7 +549,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
      *
      * @return
      */
-    public void start() {
+    public IjkPlayerView start() {
         if (mIsPlayComplete) {
             if (mDanmakuView != null && mDanmakuView.isPrepared()) {
                 mDanmakuView.seekTo((long) 0);
@@ -573,6 +573,7 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
         }
         // 视频播放时开启屏幕常亮
         mAttachActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        return this;
     }
 
     /**
@@ -610,9 +611,10 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
     /**
      * 停止
      */
-    public void stop() {
+    public IjkPlayerView stop() {
         pause();
         mVideoView.stopPlayback();
+        return this;
     }
 
     public void reset() {
@@ -921,13 +923,25 @@ public class IjkPlayerView extends FrameLayout implements View.OnClickListener {
 
     /**==================== 屏幕翻转/切换处理 ====================*/
 
-    /**
+   /* *//**
      * 使能视频翻转
-     */
+     *//*
     public IjkPlayerView enableOrientation() {
         mIsForbidOrientation = false;
         //mOrientationListener.enable();
         mOrientationListener.disable();
+        return this;
+    }*/
+
+    /**
+     * 启用禁用屏幕旋转,此方法暂时无效
+     */
+    public IjkPlayerView setRotate(boolean flag) {
+        mIsForbidOrientation = !flag;
+        if(flag)
+          mOrientationListener.enable();
+        else
+            mOrientationListener.disable();
         return this;
     }
 

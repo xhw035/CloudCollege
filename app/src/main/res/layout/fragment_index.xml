@@ -25,7 +25,7 @@
                android:id="@+id/convenientBanner"
                android:layout_width="match_parent"
                android:layout_height="180dp"
-               android:background="@color/titleBardark"
+               android:background="@drawable/img_deafult"
                app:canLoop="true"/>
 
             <include

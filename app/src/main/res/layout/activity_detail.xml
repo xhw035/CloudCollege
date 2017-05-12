@@ -33,74 +33,142 @@
             android:scrollHorizontally="true"
             android:fadingEdge="horizontal"
             android:textColor="@color/white"
-            android:text="课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情课程详情"
+            android:text="课程详情"
             android:textSize="18sp"
             />
 
     </android.support.v7.widget.Toolbar>
 
-    <!--===========内容区============-->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:background="@color/white">
-
-        <!--==========视频播放器==========-->
-        <com.dl7.player.media.IjkPlayerView
-            android:id="@+id/playerView"
+        android:background="@color/white"
+        >
+        <!--===========内容区============-->
+        <LinearLayout
+            android:id="@+id/detailContent"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-        </com.dl7.player.media.IjkPlayerView>
-
-        <!--=============指示器==================-->
-        <net.lucode.hackware.magicindicator.MagicIndicator
-            android:id="@+id/magic_indicator"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="0dp" />
-
-        <!--============ViewPager内容区===============-->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:visibility="gone"
             >
 
-            <com.cloud.college.widgets.MyViewPager
-                android:id="@+id/detailViewpager"
+            <!--==========视频播放器==========-->
+            <com.dl7.player.media.IjkPlayerView
+                android:id="@+id/playerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-            />
+                android:layout_height="200dp">
+            </com.dl7.player.media.IjkPlayerView>
 
-            <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
-                android:id="@+id/expandableBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
-                app:aebStartAngleDegree="90"
-                app:aebEndAngleDegree="90"
-                app:aebMainButtonRotateDegree="-225"
-                app:aebAnimDurationMillis="175"
-                app:aebMainButtonRotateAnimDurationMillis="300"
-                app:aebMainButtonSizeDp="55dp"
-                app:aebSubButtonSizeDp="45dp"
-                app:aebButtonElevation="8dp"
-                app:aebButtonGapDp="25dp"
-                app:aebIsSelectionMode="false"
-                app:aebRippleEffect="true"
-                app:aebRippleColor="@color/light"
-                app:aebMaskBackgroundColor="@android:color/transparent"
-                app:aebBlurBackground="true"
-                app:aebBlurRadius="5"
+            <!--=============指示器==================-->
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="0dp" />
+
+            <!--============ViewPager内容区===============-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+
+                <com.cloud.college.widgets.MyViewPager
+                    android:id="@+id/detailViewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                 />
 
-        </FrameLayout>
+                <com.fangxu.allangleexpandablebutton.AllAngleExpandableButton
+                    android:id="@+id/expandableBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    app:aebStartAngleDegree="90"
+                    app:aebEndAngleDegree="90"
+                    app:aebMainButtonRotateDegree="-225"
+                    app:aebAnimDurationMillis="175"
+                    app:aebMainButtonRotateAnimDurationMillis="300"
+                    app:aebMainButtonSizeDp="55dp"
+                    app:aebSubButtonSizeDp="45dp"
+                    app:aebButtonElevation="8dp"
+                    app:aebButtonGapDp="25dp"
+                    app:aebIsSelectionMode="false"
+                    app:aebRippleEffect="true"
+                    app:aebRippleColor="@color/light"
+                    app:aebMaskBackgroundColor="@android:color/transparent"
+                    app:aebBlurBackground="false"
+                    app:aebBlurRadius="1"
+                    />
+
+            </FrameLayout>
+            <!--============ViewPager内容区完===============-->
+        </LinearLayout>
 
 
-    </LinearLayout>
+
+        <!--===========结果异常区============-->
+        <LinearLayout
+            android:id="@+id/detailException"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_except"
+                android:layout_gravity="center_horizontal"
+            />
+            <TextView
+                android:id="@+id/detailExceptionTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text=""
+            />
+        </LinearLayout>
+
+        <!--===========加载区============-->
+        <LinearLayout
+            android:id="@+id/detailLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:orientation="vertical">
+            <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+                xmlns:gpb="http://schemas.android.com/apk/res-auto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                gpb:type="chrome_floating_circles"/>
+            <!--<com.diffey.view.circularloading.CircularLoading
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                app:cirColor="@color/dark" />-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="正在加载..."
+            />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

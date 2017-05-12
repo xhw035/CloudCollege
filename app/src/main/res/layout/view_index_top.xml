@@ -16,14 +16,14 @@
         />
 
     <RelativeLayout
-        android:id="@+id/search"
+        android:id="@+id/serach"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:orientation="horizontal"
-        android:background="@color/titleBarlight">
+        android:clickable="true"
+        android:background="@drawable/searchbox_bg">
 
         <ImageView
             android:id="@+id/searchImg"
@@ -33,7 +33,7 @@
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/home_titlebar_search"
+            android:src="@drawable/img_search"
             />
 
         <TextView

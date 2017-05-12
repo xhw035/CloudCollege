@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     android:orientation="horizontal"
@@ -43,7 +45,7 @@
                 android:minLines="1"
                 android:text="停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试"
                 android:ellipsize="middle"
-                android:textColor="@color/lirhtFont"
+                android:textColor="@color/lightFont"
                 android:textSize="14sp"/>
 
             <TextView
@@ -55,7 +57,7 @@
                 android:minLines="1"
                 android:text="停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试停车费试试"
                 android:ellipsize="middle"
-                android:textColor="@color/lirhtFont"
+                android:textColor="@color/lightFont"
                 android:textSize="12sp"/>
 
         </LinearLayout>

@@ -24,8 +24,8 @@ public class CatalogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private OnItemClickListener listener;
 
     public   interface OnItemClickListener{
-        //void onItemLongClick(View view,int position){};
-        void  onTitleClick(ChildHolder holder, int position);
+        //void  onTitleClick(ChildHolder holder, int position);
+        void  onTitleClick(int position);
         void  onDownloadClick(View view, int position);
     }
 
@@ -107,30 +107,27 @@ public class CatalogAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ChildHolder) holder).swipeDragLayout.addListener(new SwipeDragLayout.SwipeListener() {
                 @Override
                 public void onUpdate(SwipeDragLayout layout, float offset) {
-                    //Log.d("offset", "onUpdate() called with offset = [" + offset + "]");
                 }
 
                 @Override
                 public void onOpened(SwipeDragLayout layout) {
-                    //Toast.makeText(mContext, "onOpened", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onClosed(SwipeDragLayout layout) {
-                    //Toast.makeText(mContext, "onClosed", Toast.LENGTH_SHORT).show();
                 }
 
-                /**
-                 * 等同于setOnClickListener
-                 * 见Method {@link SwipeDragLayout#onFinishInflate()}
-                 * @param layout
-                 */
                 @Override
                 public void onClick(SwipeDragLayout layout) {
                     //Toast.makeText(mContext, mList.get(holder.getLayoutPosition()).getChildName(), Toast.LENGTH_SHORT).show();
                     int getlayoutposition = holder.getLayoutPosition();
                     if(listener!=null)
-                        listener.onTitleClick(((ChildHolder) holder),getlayoutposition);
+                        //listener.onTitleClick(((ChildHolder) holder),getlayoutposition);
+                        listener.onTitleClick(getlayoutposition);
+                }
+
+                @Override
+                public void onLongClick(SwipeDragLayout layout) {
                 }
             });
         }

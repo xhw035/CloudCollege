@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--===========加载区============-->
+    <LinearLayout
+        android:id="@+id/searchLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+            xmlns:gpb="http://schemas.android.com/apk/res-auto"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            gpb:type="chrome_floating_circles"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="正在加载..."
+            />
+
+    </LinearLayout>
+
+    <!--===========结果异常区============-->
+    <LinearLayout
+        android:id="@+id/searchException"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_except"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:id="@+id/searchExceptionTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text=""
+        />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/resultListview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:clickable="false"
+        android:scrollbars="none"
+        android:divider="@color/divideBg"
+        android:dividerHeight="0px"
+    />
+
+
+
+</FrameLayout>

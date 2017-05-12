@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     >
 
-    <android.support.v4.view.ViewPager
+    <com.cloud.college.widgets.MyViewPager
         android:id="@+id/ViewPager"
         android:background="@color/white"
         android:layout_width="match_parent"

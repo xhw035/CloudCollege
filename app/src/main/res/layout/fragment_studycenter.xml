@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/dark"
+    >
+
+    <!--================顶部标题栏=================-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/dark"
+        android:orientation="vertical" >
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            android:id="@+id/segmentedGroup"
+            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            segmentedgroup:sc_border_width="1dp"
+            segmentedgroup:sc_corner_radius="5dp"
+            segmentedgroup:sc_tint_color="@color/white"
+            segmentedgroup:sc_checked_text_color="@color/dark"
+            >
+
+            <RadioButton
+                android:id="@+id/downloadBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载"
+                style="@style/RadioButton" />
+
+            <RadioButton
+                android:id="@+id/collectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收藏"
+                style="@style/RadioButton" />
+        </info.hoang8f.android.segmented.SegmentedGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:text="收  藏"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            />
+
+    </LinearLayout>
+
+    <!--================内容区=================-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="@color/bg_white"
+        >
+
+        <!--==========下载=========-->
+        <ListView
+            android:id="@+id/downloadListview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:visibility="visible"
+            android:background="@color/white"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:clickable="false"
+            android:scrollbars="none"
+            android:divider="@color/divideBg"
+            android:dividerHeight="0px"
+        />
+
+        <!--==========收藏=========-->
+        <ListView
+            android:id="@+id/collectListview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:visibility="visible"
+            android:background="@color/white"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:clickable="false"
+            android:scrollbars="none"
+            android:divider="@color/divideBg"
+            android:dividerHeight="0px"
+        />
+
+
+        <!--===========加载区============-->
+        <LinearLayout
+            android:id="@+id/centerLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+                xmlns:gpb="http://schemas.android.com/apk/res-auto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                gpb:type="chrome_floating_circles"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="正在加载..."
+            />
+
+        </LinearLayout>
+
+        <!--===========结果异常区============-->
+        <LinearLayout
+            android:id="@+id/centerException"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/centerfresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_click_refresh"
+                android:layout_gravity="center_horizontal"
+            />
+
+        </LinearLayout>
+
+        <!--===========未登录或者空============-->
+        <LinearLayout
+            android:id="@+id/centerEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_empty"
+                android:layout_gravity="center_horizontal"
+            />
+
+            <TextView
+                android:id="@+id/centerEmptyTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/lightFont"
+                android:textSize="16sp"
+                android:text="您还没有登录呢"
+            />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

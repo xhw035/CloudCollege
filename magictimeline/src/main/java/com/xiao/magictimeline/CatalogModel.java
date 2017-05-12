@@ -13,11 +13,21 @@ public class CatalogModel {
     protected int type;
     protected String gruopName;
 
+    protected String videoID;
     protected String childName;
     protected String videoTime;
     protected int fontColor = Color.BLACK;
+    protected int videoSize ;
     protected String URL_M;
     protected String URL_H;
+
+    public String getVideoID() {
+        return videoID;
+    }
+
+    public void setVideoID(String videoID) {
+        this.videoID = videoID;
+    }
 
     public int getType() {
         return type;
@@ -57,6 +67,14 @@ public class CatalogModel {
 
     public void setFontColor(int fontColor) {
         this.fontColor = fontColor;
+    }
+
+    public int getVideoSize() {
+        return videoSize;
+    }
+
+    public void setVideoSize(int videoSize) {
+        this.videoSize = videoSize;
     }
 
     public String getURL_M() {

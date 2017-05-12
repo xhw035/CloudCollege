@@ -6,13 +6,13 @@
     <string name="tab_center">学习中心</string>
     <string name="tab_account">我的</string>
 
-    <string name="type_it">编程</string>
+    <string name="type_it">计算机</string>
+    <string name="type_engineering">工科</string>
     <string name="type_economy">经济</string>
     <string name="type_humanity">人文</string>
-    <string name="type_society">社会</string>
+    <string name="type_philosophy">哲学</string>
+    <string name="type_ideology">思政</string>
     <string name="type_science">理科</string>
-    <string name="type_engineering">工科</string>
-    <string name="type_examination">高考</string>
     <string name="type_other">其他</string>
 
 </resources>

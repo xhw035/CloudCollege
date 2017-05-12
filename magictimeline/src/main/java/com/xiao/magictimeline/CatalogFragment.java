@@ -46,9 +46,7 @@ public class CatalogFragment extends Fragment {
 
         adpter = new CatalogAdapter(getActivity(),list,listener);
         mRecyclerView.setAdapter(adpter);
-
         return view;
-
     }
 
     @Override

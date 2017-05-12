@@ -40,16 +40,29 @@ public class SwipeDragLayout extends FrameLayout {
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeDragLayout);
         needOffset = array.getFloat(R.styleable.SwipeDragLayout_need_offset, 0.2f);
-        //是否有回弹效果
-        ios = array.getBoolean(R.styleable.SwipeDragLayout_ios, false);
+        ios = array.getBoolean(R.styleable.SwipeDragLayout_ios, false);//是否有回弹效果
         clickToClose = array.getBoolean(R.styleable.SwipeDragLayout_click_to_close, false);
+
         init();
         array.recycle();
+    }
+
+    public void setClickToClose(boolean clickToClose) {
+        this.clickToClose = clickToClose;
+    }
+
+    public void setIos(boolean ios) {
+        this.ios = ios;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
     }
 
     public static SwipeDragLayout getmCacheView() {
         return mCacheView;
     }
+
 
     //初始化dragHelper，对拖动的view进行操作
     private void init() {
@@ -121,22 +134,19 @@ public class SwipeDragLayout extends FrameLayout {
 
     }
 
-    public void setClickToClose(boolean clickToClose) {
-        this.clickToClose = clickToClose;
-    }
-
-    public void setIos(boolean ios) {
-        this.ios = ios;
-    }
-
-    public boolean isOpen() {
-        return isOpen;
-    }
-
     public void open() {
         mCacheView = SwipeDragLayout.this;
         mDragHelper.settleCapturedViewAt(originPos.x - menuView.getWidth(), originPos.y);
         isOpen = true;
+    }
+
+    public void close() {
+        mDragHelper.settleCapturedViewAt(originPos.x, originPos.y);
+        isOpen = false;
+        mCacheView = null;
+        if (mListener != null) {
+            mListener.onClosed(SwipeDragLayout.this);
+        }
     }
 
     public void smoothOpen(boolean smooth) {
@@ -148,29 +158,21 @@ public class SwipeDragLayout extends FrameLayout {
         }
     }
 
-    private void smoothClose(boolean smooth) {
+    public void smoothClose(boolean smooth) {
         if (smooth) {
             mDragHelper.smoothSlideViewTo(contentView, getPaddingLeft(), getPaddingTop());
-            postInvalidate();
+        postInvalidate();
         } else {
             contentView.layout(originPos.x, originPos.y, menuView.getRight(), menuView.getBottom());
         }
-        isOpen = false;
+    isOpen = false;
         mCacheView = null;
 
     }
 
 
 
-    public void close() {
-        mDragHelper.settleCapturedViewAt(originPos.x, originPos.y);
-        isOpen = false;
-        mCacheView = null;
-        if (mListener != null) {
-            mListener.onClosed(SwipeDragLayout.this);
-        }
-    }
-    
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
@@ -236,6 +238,20 @@ public class SwipeDragLayout extends FrameLayout {
 
                 }
             });
+
+            //长按
+            contentView.setOnLongClickListener(new OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (clickToClose&&isOpen()){
+                        smoothClose(true);
+                    }
+                    if (mListener!=null){
+                        mListener.onLongClick(SwipeDragLayout.this);
+                    }
+                    return false;
+                }
+            });
         }
     }
 
@@ -258,6 +274,7 @@ public class SwipeDragLayout extends FrameLayout {
     public void addListener(SwipeListener listener) {
         mListener = listener;
     }
+
 
     //滑动监听
     public interface SwipeListener {
@@ -286,6 +303,13 @@ public class SwipeDragLayout extends FrameLayout {
          * @param layout
          */
         void onClick(SwipeDragLayout layout);
+
+        /**
+         * 长按内容layout {@link #onFinishInflate()}
+         * @param layout
+         */
+        void onLongClick(SwipeDragLayout layout);
     }
+
 
 }

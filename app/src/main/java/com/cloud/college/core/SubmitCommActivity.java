@@ -2,24 +2,37 @@ package com.cloud.college.core;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cloud.college.R;
+import com.cloud.college.network.universalResponseData;
+import com.cloud.college.uitl.MyApplication;
+import com.cloud.college.uitl.SpUitl;
+import com.cloud.college.uitl.networkUtil;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Response;
+
+import static com.cloud.college.uitl.UiUtil.hideSoftInput;
+import static com.cloud.college.uitl.UiUtil.showSoftInput;
 
 /**
  * Created by xiao on 2017/5/3.
@@ -32,19 +45,25 @@ public class SubmitCommActivity extends Activity {
     @BindView(R.id.submitComm) ImageView submitComm;
     @BindView(R.id.editTextComm) EditText editTextComm;
 
-    String commStr="";
+    private String commStr = "";
+    private String videoID = "";
+    private Context mContext = this;
+    private Call<universalResponseData> commentCall;
+    private KProgressHUD kProgressHUD;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_comm);
         mUnbinder = ButterKnife.bind(this);
+        videoID = getIntent().getStringExtra("videoID");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mUnbinder.unbind();
+        //commentCall.cancel();
     }
 
     @Override
@@ -60,19 +79,19 @@ public class SubmitCommActivity extends Activity {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             commStr = editTextComm.getText().toString();
             if (TextUtils.isEmpty(commStr)){
-                hideSoftInput();
+                hideSoftInput(SubmitCommActivity.this);
                 finish();
             }else {
                 StyledDialog.buildIosAlert( "", "您的评论还没有提交，确定要离开吗？",  new MyDialogListener() {
                     @Override
                     public void onFirst() {
-                        hideSoftInput();
+                        hideSoftInput(SubmitCommActivity.this);
                         finish();
                     }
 
                     @Override
                     public void onSecond() {
-                        showSoftInput();
+                        showSoftInput(SubmitCommActivity.this);
                     }
 
                 }).setBtnText("确定","取消").show();
@@ -87,45 +106,77 @@ public class SubmitCommActivity extends Activity {
 
     @OnClick(R.id.cancelComm)
     public void cancel(View view){
-        hideSoftInput();
+        hideSoftInput(SubmitCommActivity.this);
         finish();
         //SubmitCommActivity.this.overridePendingTransition(R.anim.activity_close,0);
     }
 
     @OnClick(R.id.submitComm)
     public void submit(View view){
-         commStr = editTextComm.getText().toString();
+        commStr = editTextComm.getText().toString();
         if (TextUtils.isEmpty(commStr)){
             Toasty.info(this,"请输入内容后再提交！").show();
             return;
         }else {
-            hideSoftInput();
-            //============将内容提交到服务器并关闭当前页==========
-
-            Toasty.info(this,"评论提交成功").show();
-            setResult(RESULT_OK);
-            finish();
+             hideSoftInput(SubmitCommActivity.this);
+            handler.sendEmptyMessageDelayed(0,200);
         }
     }
 
-    //收起软键盘
-    public void hideSoftInput() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            kProgressHUD = KProgressHUD.create(mContext)
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("正在提交...")
+            .setWindowColor(Color.parseColor("#992BC17A"))
+            .setAnimationSpeed(2)
+            .setDimAmount(0.5f)
+            .show();
+
+            if(!networkUtil.isNetworkAvailable(mContext)){
+                kProgressHUD.dismiss();
+                Toasty.error(mContext,"网络异常，无法连接服务器！").show();
+                return ;
+            }
+
+
+//            commentCall = MyApplication.getMyService().addComment();
+          commentCall = MyApplication.getMyService().addComment(SpUitl.getUserID(mContext),videoID,commStr);
+
+            commentCall.enqueue(new retrofit2.Callback<universalResponseData>() {
+
+                @Override
+                public void onResponse(Call<universalResponseData> call, Response<universalResponseData> response) {
+                    if(response.body()==null){
+                        kProgressHUD.dismiss();
+                        Toasty.error(mContext,"服务器异常，提交数据出错！").show();
+                        return;
+                    }
+
+                    if(response.body().getState() == 0){
+                        kProgressHUD.dismiss();
+                        TastyToast.makeText(mContext, "评论成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+                        setResult(RESULT_OK);
+                        finish();
+                    }else {
+                        kProgressHUD.dismiss();
+                        TastyToast.makeText(mContext, "服务器异常，评论失败", TastyToast.LENGTH_LONG, TastyToast.ERROR);
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<universalResponseData> call, Throwable t) {
+                    kProgressHUD.dismiss();
+                    Toasty.error(mContext,"评论失败，请稍候重试！").show();
+                }
+            });
+
         }
-    }
-
-    //弹起软键盘
-    public void showSoftInput() {
-        Toasty.info(this,"弹起软键盘").show();
-        InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS); //开关软件键盘
-        /* 下面的都不生效
-        inputManager.showSoftInput(editTextComm, 0);
-        inputManager.showSoftInputFromInputMethod(getWindow().getDecorView().getWindowToken(),0);*/
-    }
-
+    };
 
 
 

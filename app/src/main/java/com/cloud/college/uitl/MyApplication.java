@@ -1,4 +1,4 @@
-package com.cloud.college.core;
+package com.cloud.college.uitl;
 
 import android.app.Activity;
 import android.app.Application;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.cloud.college.R;
+import com.cloud.college.network.MyService;
 import com.hss01248.dialog.MyActyManager;
 import com.hss01248.dialog.StyledDialog;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
@@ -23,6 +24,11 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Author: xiao(xhw219@163.com)
@@ -32,19 +38,34 @@ import java.io.File;
 
 public class MyApplication extends Application{
 
+    public static String serverHost = "192.168.191.1";
+    //public static String serverHost = "192.168.1.103";
+    //public static String serverHost = "xhw123.cn";
+    public static boolean refreshCollection = true;
+    private static Retrofit mRetrofit;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         initImageLoader();
         StyledDialog.init(this);
         registCallback();
+        initRetrofit();
+        initTest();
+    }
+
+
+    //获取Retrofit服务
+    public static MyService getMyService(){
+        return mRetrofit.create(MyService.class);
     }
 
    ///初始化网络图片缓存库,详细的配置
    private void initImageLoader(){
        //设置显示的图片的各种格式
        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-               .showImageOnLoading(R.drawable.img_deafult)
+               .showImageOnLoading(R.drawable.img_loading)
                .showImageForEmptyUri(R.drawable.img_deafult)
                .showImageOnFail(R.drawable.img_load_fail)
                .resetViewBeforeLoading(false)  // default
@@ -125,6 +146,30 @@ public class MyApplication extends Application{
             public void onActivityDestroyed(Activity activity) {
             }
         });
+    }
+
+    //配置Retrofit
+    private void initRetrofit() {
+        //先配置OkHttpClient客户端
+        OkHttpClient client = new OkHttpClient.Builder()
+        .retryOnConnectionFailure(true)
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .build();
+
+        //获取实例
+        mRetrofit = new Retrofit.Builder()
+        //设置OKHttpClient,如果不设置会提供一个默认的
+        .client(client)
+        //设置baseUrl
+        .baseUrl("http://"+serverHost+":8080")
+//        .baseUrl("http://"+serverHost)
+        //添加Gson转换器
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
+    }
+
+    private void initTest() {
+        SpUitl.setUserID(getApplicationContext(),"297e386a56410ddd0156411a94c50021");
     }
 
 }

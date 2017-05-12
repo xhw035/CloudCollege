@@ -1,14 +1,14 @@
 package com.cloud.college.core;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.cloud.college.R;
+import com.cloud.college.uitl.MyApplication;
+import com.cloud.college.widgets.MyViewPager;
 import com.yinglan.alphatabs.AlphaTabsIndicator;
 
 import java.util.ArrayList;
@@ -26,8 +26,12 @@ import butterknife.Unbinder;
 public class MainActivity extends FragmentActivity {
 
     private Unbinder unbinder;
-    @BindView(R.id.ViewPager) ViewPager viewPager;
+    @BindView(R.id.ViewPager) MyViewPager viewPager;
     @BindView(R.id.alphaIndicator) AlphaTabsIndicator alphaTabsIndicator;
+
+    indexFragment homepageFragment ;
+    StudyCenterFragment studyCenter;
+    DefaultFragment defaultFragment2 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,14 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initView() {
-        indexFragment homepageFragment = new indexFragment();
-        DefaultFragment defaultFragment1 = new DefaultFragment();
-        DefaultFragment defaultFragment2 = new DefaultFragment();
+        homepageFragment = new indexFragment();
+        studyCenter = new StudyCenterFragment();
+        defaultFragment2 = new DefaultFragment();
         //DefaultFragment defaultFragment3 = new DefaultFragment();
 
         final ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(homepageFragment);
-        fragmentList.add(defaultFragment1);
+        fragmentList.add(studyCenter);
         fragmentList.add(defaultFragment2);
         //fragmentList.add(defaultFragment3);
 
@@ -73,11 +77,30 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initEvent() {
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==1)
+                    viewPager.setPagingEnabled(false);
+                else
+                    viewPager.setPagingEnabled(true);
+
+                if(position ==1&& MyApplication.refreshCollection){
+                    studyCenter.init();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-    public void onTest(View view){
-        Intent intent = new Intent(this,DetailActivity.class);
-        startActivity(intent);
-    }
+
 }

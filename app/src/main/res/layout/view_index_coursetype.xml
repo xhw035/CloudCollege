@@ -17,11 +17,11 @@
 
         <LinearLayout
             android:id="@+id/typeView1"
+            android:tag="297e386a56410ddd0156411a94c50005#计算机"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="onTest"
             >
             <cn.carbs.android.avatarimageview.library.AvatarImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,6 +47,7 @@
 
         <LinearLayout
             android:id="@+id/typeView2"
+            android:tag="297e386a56410ddd0156411a94c50004#工科"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -69,12 +70,13 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_economy"
+                android:text="@string/type_engineering"
             />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/typeView3"
+            android:tag="297e386a56410ddd0156411a94c50001#经济"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -97,12 +99,13 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_humanity"
+                android:text="@string/type_economy"
             />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/typeView4"
+            android:tag="297e386a56410ddd0156411a94c50002#人文"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -125,7 +128,7 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_society"
+                android:text="@string/type_humanity"
             />
         </LinearLayout>
 
@@ -142,6 +145,7 @@
 
         <LinearLayout
             android:id="@+id/typeView5"
+            android:tag="297e386a56410ddd0156411a94c50003#哲学"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -164,12 +168,13 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_science"
+                android:text="@string/type_philosophy"
             />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/typeView6"
+            android:tag="297e386a56410ddd0156411a94c50006#思政"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -192,12 +197,13 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_engineering"
+                android:text="@string/type_ideology"
             />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/typeView7"
+            android:tag="297e386a56410ddd0156411a94c50007#理科"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -220,12 +226,13 @@
                 android:gravity="center_horizontal"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="@string/type_examination"
+                android:text="@string/type_science"
             />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/typeView8"
+            android:tag="297e386a56410ddd0156411a94c50008#其他"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
