@@ -37,7 +37,7 @@ import com.cloud.college.network.PopularCourseData;
 import com.cloud.college.uitl.MyApplication;
 import com.cloud.college.uitl.NetworkImageHolderView;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
+import com.cloud.college.uitl.NetworkUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ import retrofit2.Response;
  * DESC:首页对应的Fragment
  */
 
-public class indexFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener  {
+public class IndexFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener  {
 
     @BindView(R.id.convenientBanner) ConvenientBanner convenientBanner;
 
@@ -142,7 +142,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
         popularCourseCall.cancel();
     }
 
-    private void initView() {
+    public void initView() {
         initBanner();
         initCourseType();
         initPopularCourse();
@@ -167,7 +167,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
         transformerList.add(ZoomOutTranformer.class.getSimpleName());
 
         bannerCall = service.getBannerData();
-        if(!networkUtil.isNetworkConnected(getActivity())){
+        if(!NetworkUtil.isNetworkConnected(getActivity())){
             configBannerCache();
             bannerLoadState = false;
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
@@ -205,6 +205,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
                 //循环播放
                 .startTurning(5000);
                 bannerLoadState = true;
+
 
             }
 
@@ -253,7 +254,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
 
     private void initPopularCourse() {
         popularCourseCall = service.getPopularCourse();
-        if(!networkUtil.isNetworkConnected(getActivity())){
+        if(!NetworkUtil.isNetworkConnected(getActivity())){
             configPopularCourseCache();
             courseLoadState = false;
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
@@ -299,6 +300,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
                 ImageLoader.getInstance().displayImage(popularCourseList.get(8).getCourseImg(),chartImg9);
                 ImageLoader.getInstance().displayImage(popularCourseList.get(9).getCourseImg(),chartImg10);
                 courseLoadState = true;
+
             }
 
             @Override
@@ -377,7 +379,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
      */
     @Override
     public void onItemClick(int position) {
-        if(!networkUtil.isNetworkConnected(getActivity())){
+        if(!NetworkUtil.isNetworkConnected(getActivity())){
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
             return ;
         }
@@ -395,7 +397,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
      */
     @OnClick(R.id.serach)
     public void handleKeywordSerach(View view){
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        if(!NetworkUtil.isNetworkAvailable(getActivity())){
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
             return ;
         }
@@ -410,7 +412,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
     @OnClick({R.id.typeView1,R.id.typeView2,R.id.typeView3,R.id.typeView4,
               R.id.typeView5,R.id.typeView6,R.id.typeView7,R.id.typeView8})
     public void handleTypeSearch(View v) {
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        if(!NetworkUtil.isNetworkAvailable(getActivity())){
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
             return ;
         }
@@ -428,7 +430,7 @@ public class indexFragment extends Fragment implements ViewPager.OnPageChangeLis
     @OnClick({R.id.chartCard1,R.id.chartCard2,R.id.chartCard3,R.id.chartCard4,R.id.chartCard5,
             R.id.chartCard6,R.id.chartCard7,R.id.chartCard8,R.id.chartCard9,R.id.chartCard10})
     public void handleChartCard(View v) {
-        if(!networkUtil.isNetworkConnected(getActivity())){
+        if(!NetworkUtil.isNetworkConnected(getActivity())){
             Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
             return ;
         }

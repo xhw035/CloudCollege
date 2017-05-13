@@ -24,8 +24,8 @@ import com.cloud.college.R;
 import com.cloud.college.network.CourseCatalogData;
 import com.cloud.college.network.universalResponseData;
 import com.cloud.college.uitl.MyApplication;
+import com.cloud.college.uitl.NetworkUtil;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
 import com.cloud.college.widgets.MarqueeTextView;
 import com.cloud.college.widgets.MyViewPager;
 import com.cloud.college.widgets.ScaleTransitionPagerTitleView;
@@ -245,7 +245,7 @@ public class DetailActivity extends AppCompatActivity {
         //==============初始化时间轴目录数据===================
 //        catalogCall = MyApplication.getMyService().getCourseCatalog();
         catalogCall = MyApplication.getMyService().getCourseCatalog(courseID,SpUitl.getUserID(this));
-        if(!networkUtil.isNetworkAvailable(this)){
+        if(!NetworkUtil.isNetworkAvailable(this)){
             detailLoading.setVisibility(View.GONE);
             detailContent.setVisibility(View.GONE);
             detailExceptionTip.setText("网络异常，加载视频失败...");
@@ -430,37 +430,42 @@ public class DetailActivity extends AppCompatActivity {
 
             @Override
             public void onButtonClicked(int index) {
+                if(index == 1) {
+                    //下载
+                    kProgressHUD.dismiss();
+                    Toasty.info(mContext,"本版本暂不支持该功能,敬请期待").show();
+                }
+
                 kProgressHUD = KProgressHUD.create(mContext)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 //.setLabel("正在提交...")
-                //.setWindowColor(Color.parseColor("#992BC17A"))
+                .setWindowColor(Color.parseColor("#992BC17A"))
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
                 .show();
 
-                if(!networkUtil.isNetworkAvailable(mContext)){
+                if(!NetworkUtil.isNetworkAvailable(mContext)){
                     kProgressHUD.dismiss();
                     Toasty.error(mContext,"网络异常，无法连接服务器！").show();
                     return ;
                 }
 
                 if(!SpUitl.isLogin(mContext)){
+                    kProgressHUD.dismiss();
                     Toasty.info(mContext,"您还没有登录呢，请先登录").show();
                     //=====================这里进行调起登录页的操作==================
+                    Intent intent = new Intent(DetailActivity.this,LoginActivity.class);
+                    intent.putExtra("isBack", true);
+                    startActivityForResult(intent,0);
                     return;
                 }
 
-                if(index == 1) {
-                    //下载
-                    kProgressHUD.dismiss();
-                    Toasty.info(mContext,"本版本暂不支持该功能").show();
-                }
                 if(index == 2) {
                     //评论
                     kProgressHUD.dismiss();
                     Intent intent = new Intent(mContext,SubmitCommActivity.class);
                     intent.putExtra("videoID",videoID);
-                    startActivityForResult(intent,0);
+                    startActivityForResult(intent,1);
                     overridePendingTransition(R.anim.activity_open,0);//底部弹起动画
                 }
                 if(index == 3) {
@@ -530,14 +535,18 @@ public class DetailActivity extends AppCompatActivity {
     };
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (resultCode) {
-            case RESULT_OK:
-                mViewPager.setCurrentItem(2);
-                handler.sendEmptyMessageDelayed(0,300);
-                break;
-            default:
-                break;
+        //登录成功
+        if(requestCode==0&&resultCode==0){
+            MyApplication.refreshCollection =true;
+            MyApplication.refreshMine =true;
         }
+
+        //评论成功
+        if(requestCode==1&&resultCode==0){
+            mViewPager.setCurrentItem(2);
+            handler.sendEmptyMessageDelayed(0,300);
+        }
+
     }
 
 }

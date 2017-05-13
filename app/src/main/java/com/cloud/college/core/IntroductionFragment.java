@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.cloud.college.R;
 import com.cloud.college.network.CourseInfoData;
 import com.cloud.college.uitl.MyApplication;
-import com.cloud.college.uitl.networkUtil;
+import com.cloud.college.uitl.NetworkUtil;
 import com.hedgehog.ratingbar.RatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -83,7 +83,7 @@ public class IntroductionFragment extends Fragment {
         
 //        infoCall = MyApplication.getMyService().getCourseInfo();
         infoCall = MyApplication.getMyService().getCourseInfo(((DetailActivity)getActivity()).courseID);
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        if(!NetworkUtil.isNetworkAvailable(getActivity())){
             introContent.setVisibility(View.GONE);
             introlLoading.setVisibility(View.GONE);
             introException.setVisibility(View.VISIBLE);

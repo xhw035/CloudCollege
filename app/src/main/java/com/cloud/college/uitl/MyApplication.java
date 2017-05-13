@@ -2,6 +2,7 @@ package com.cloud.college.uitl;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import cn.smssdk.SMSSDK;
+import es.dmoral.toasty.Toasty;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -33,27 +36,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Author: xiao(xhw219@163.com)
  * Date: 2017-02-26 01:54
- * DESC:
+ * DESC:应用一启动就执行，用于初始化。
  */
 
 public class MyApplication extends Application{
 
     public static String serverHost = "192.168.191.1";
-    //public static String serverHost = "192.168.1.103";
+    //public static String serverHost = "123.207.237.185";
     //public static String serverHost = "xhw123.cn";
     public static boolean refreshCollection = true;
+    public static boolean refreshMine = true;
     private static Retrofit mRetrofit;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
+        SMSSDK.initSDK(this, "1dd40f4a6d5ab", "a64396ea251971034f21444655ef9cad");
         initImageLoader();
         StyledDialog.init(this);
         registCallback();
         initRetrofit();
         initTest();
     }
+
 
 
     //获取Retrofit服务
@@ -168,8 +174,20 @@ public class MyApplication extends Application{
         .build();
     }
 
+
+
     private void initTest() {
-        SpUitl.setUserID(getApplicationContext(),"297e386a56410ddd0156411a94c50021");
+        //SpUitl.setUserID(getApplicationContext(),"297e386a56410ddd0156411a94c50021");
+        SpUitl.setFirstTime(true);
     }
 
+    //检查更新
+    public static void checkUpdate(Context context, boolean isAuto){
+
+        if(NetworkUtil.isNetworkAvailable(context)){
+            new UpdateManager(context).checkUpdate(isAuto);
+        }else if (!isAuto){
+            Toasty.error(context,"网络异常，无法获取更新信息！").show();
+        }
+    }
 }

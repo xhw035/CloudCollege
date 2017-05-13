@@ -21,7 +21,7 @@ import com.cloud.college.network.CollectInfoData;
 import com.cloud.college.network.universalResponseData;
 import com.cloud.college.uitl.MyApplication;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
+import com.cloud.college.uitl.NetworkUtil;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
@@ -36,6 +36,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 import es.dmoral.toasty.Toasty;
 import info.hoang8f.android.segmented.SegmentedGroup;
 import retrofit2.Call;
@@ -67,11 +68,12 @@ public class StudyCenterFragment extends Fragment  {
     private Call<CollectInfoData> collectCall;
     public List<CollectInfoData.DataBean> dataList;
     private KProgressHUD kProgressHUD;
+    private Unbinder mUnbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_studycenter,container,false);
-        ButterKnife.bind(this,view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -79,6 +81,12 @@ public class StudyCenterFragment extends Fragment  {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mContext = getActivity();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 
     public void init() {
@@ -110,13 +118,13 @@ public class StudyCenterFragment extends Fragment  {
             centerLoading.setVisibility(View.GONE);
             centerException.setVisibility(View.GONE);
             centerEmpty.setVisibility(View.VISIBLE);
-            Toasty.info(mContext,"您还没有登录呢，请先登录").show();
+            Toasty.info(mContext,"您还未登录呢，无法获取收藏数据").show();
             return;
         }
 
        //collectCall = MyApplication.getMyService().getCollectInfo();
        collectCall = MyApplication.getMyService().getCollectInfo(SpUitl.getUserID(mContext));
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        if(!NetworkUtil.isNetworkAvailable(getActivity())){
             downloadListview.setVisibility(View.GONE);
             collectListview.setVisibility(View.GONE);
             centerLoading.setVisibility(View.GONE);
@@ -137,6 +145,7 @@ public class StudyCenterFragment extends Fragment  {
                     centerEmpty.setVisibility(View.VISIBLE);
                     centerEmptyTip.setText("空空如是也...");
                     Toasty.info(getActivity(),"您还没收藏任何课程").show();
+                    MainActivity.isCollectionEmpty = true;
                     return;
                 }
 
@@ -223,7 +232,7 @@ public class StudyCenterFragment extends Fragment  {
             .setDimAmount(0.5f)
             .show();
 
-            if(!networkUtil.isNetworkAvailable(mContext)){
+            if(!NetworkUtil.isNetworkAvailable(mContext)){
                 kProgressHUD.dismiss();
                 Toasty.error(mContext,"网络异常，无法连接服务器！").show();
                 return ;
@@ -253,6 +262,7 @@ public class StudyCenterFragment extends Fragment  {
                             centerException.setVisibility(View.GONE);
                             centerEmpty.setVisibility(View.VISIBLE);
                             centerEmptyTip.setText("空空如是也...");
+                            MainActivity.isCollectionEmpty = true;
                         }
                         TastyToast.makeText(context, "取消收藏成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
                     }else {

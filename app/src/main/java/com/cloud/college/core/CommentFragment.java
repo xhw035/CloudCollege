@@ -1,9 +1,11 @@
 package com.cloud.college.core;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.cloud.college.R;
 import com.cloud.college.network.CommentData;
+import com.cloud.college.network.universalResponseData;
 import com.cloud.college.uitl.MyApplication;
+import com.cloud.college.uitl.NetworkUtil;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -33,8 +36,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static es.dmoral.toasty.Toasty.info;
-
 /**
  * Author: xiao(xhw219@163.com)
  * Date: 2017-02-21 23:22
@@ -49,6 +50,7 @@ public class CommentFragment extends Fragment {
     @BindView(R.id.commLoading) LinearLayout commLoading;
 
     private Unbinder mUnbinder;
+    private FragmentActivity mContext;
     private View view;
     private SimpleRatingBar simpleRatingBar;
     private CommentAdapter adapter;
@@ -61,7 +63,8 @@ public class CommentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_detail_comment,container,false);
         mUnbinder = ButterKnife.bind(this, view);
-        View headerView = View.inflate(getActivity(), R.layout.view_header_comment, null);
+        mContext = getActivity();
+        View headerView = View.inflate(mContext, R.layout.view_header_comment, null);
         commentListView.addHeaderView(headerView);
         simpleRatingBar = (SimpleRatingBar )headerView.findViewById(R.id.simpleRatingBar);
         return view;
@@ -73,17 +76,6 @@ public class CommentFragment extends Fragment {
         initData();
         initEvent();
 
-       /* List<CommentModel> mlist = new ArrayList<CommentModel>();
-        for (int i = 0; i < 20; i++) {
-            CommentModel model = new CommentModel();
-            model.setHeadUrl("http://avatar.csdn.net/7/F/F/2_xhw035.jpg");
-            model.setNickName("我就是太嚣张我就是太嚣张我就是太嚣张我就是太嚣张我就是太嚣张我就是太嚣张我就是太嚣张我就是太嚣张");
-            model.setCommentTime("2017.05.02");
-            model.setCommentStr("我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅我好帅");
-            mlist.add(model);
-        }
-        adapter = new CommentAdapter(getActivity(),mlist);
-        commentListView.setAdapter(adapter);*/
     }
 
     @Override
@@ -99,13 +91,13 @@ public class CommentFragment extends Fragment {
         commLoading.setVisibility(View.VISIBLE);
 
 //        commCall = MyApplication.getMyService().getComment();
-        commCall = MyApplication.getMyService().getComment(SpUitl.getUserID(getActivity()),((DetailActivity)getActivity()).courseID);
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        commCall = MyApplication.getMyService().getComment(SpUitl.getUserID(mContext),((DetailActivity) mContext).courseID);
+        if(!NetworkUtil.isNetworkAvailable(mContext)){
             commentListView.setVisibility(View.GONE);
             noCommm.setVisibility(View.GONE);
             commException.setVisibility(View.VISIBLE);
             commLoading.setVisibility(View.GONE);
-            Toasty.error(getActivity(),"网络异常，无法连接服务器！").show();
+            Toasty.error(mContext,"网络异常，无法连接服务器！").show();
             return ;
         }
 
@@ -117,7 +109,7 @@ public class CommentFragment extends Fragment {
                     noCommm.setVisibility(View.GONE);
                     commException.setVisibility(View.VISIBLE);
                     commLoading.setVisibility(View.GONE);
-                    Toasty.error(getActivity(),"服务器异常，加载数据出错！").show();
+                    Toasty.error(mContext,"服务器异常，加载数据出错！").show();
                     return;
                 }
 
@@ -132,7 +124,7 @@ public class CommentFragment extends Fragment {
                 noCommm.setVisibility(View.GONE);
                 commException.setVisibility(View.VISIBLE);
                 commLoading.setVisibility(View.GONE);
-                Toasty.error(getActivity(),"加载数据失败，请稍候重试！").show();
+                Toasty.error(mContext,"加载数据失败，请稍候重试！").show();
                 return;
             }
         });
@@ -156,7 +148,7 @@ public class CommentFragment extends Fragment {
             commException.setVisibility(View.GONE);
             commLoading.setVisibility(View.GONE);
         }else {
-            adapter = new CommentAdapter(getActivity(), list);
+            adapter = new CommentAdapter(mContext, list);
             commentListView.setAdapter(adapter);
 
             commentListView.setVisibility(View.VISIBLE);
@@ -167,10 +159,48 @@ public class CommentFragment extends Fragment {
     }
 
     public void initEvent() {
+
         simpleRatingBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            info(getActivity(), "您的评分为：" + simpleRatingBar.getRating()).show();
+                if(!NetworkUtil.isNetworkAvailable(mContext)){
+                    Toasty.error(mContext,"网络异常，无法提交评分").show();
+                    return;
+                }
+
+                if(!SpUitl.isLogin(mContext)){
+                    Toasty.info(mContext,"您还没有登录呢，请先登录").show();
+                    //==============这里进行调起登录页的操作==================
+                    Intent intent = new Intent(mContext,LoginActivity.class);
+                    intent.putExtra("isBack", true);
+                    startActivityForResult(intent,0);
+                    return;
+                }
+
+                Call<universalResponseData> scorecall = MyApplication.getMyService().submitScore(SpUitl.getUserID(mContext),
+                        ((DetailActivity) getActivity()).videoID, simpleRatingBar.getRating());
+                scorecall.enqueue(new Callback<universalResponseData>() {
+                    @Override
+                    public void onResponse(Call<universalResponseData> call, Response<universalResponseData> response) {
+                        if(response.body()==null){
+                            Toasty.error(mContext,"服务器异常，提交评分失败！").show();
+                            return;
+                        }
+
+                        if(response.body().getState()==0){
+                            Toasty.error(mContext,"评分成功").show();
+                            return;
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<universalResponseData> call, Throwable t) {
+                        Toasty.error(mContext,"网络异常，提交评分失败！").show();
+                        return;
+                    }
+                });
+
 
             }
         });
@@ -180,6 +210,15 @@ public class CommentFragment extends Fragment {
     @OnClick(R.id.commRefresh)
     public void refresh(View view){
         initData();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //登录成功，同步登录状态
+        if(requestCode==0&&resultCode==0){
+            MyApplication.refreshCollection =true;
+            MyApplication.refreshMine =true;
+        }
+
     }
 }
 

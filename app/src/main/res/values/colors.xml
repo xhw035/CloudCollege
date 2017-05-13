@@ -8,6 +8,7 @@
     <color name="black">#000000</color>
     <color name="redOrange">#FF352F</color>
     <color name="darkWhite">#F0F4F5</color>
+    <color name="mineBg">#E9EFEF</color>
 
     <color name="separationLine">#888</color>
     <color name="divideBg">#F0F4F5</color>

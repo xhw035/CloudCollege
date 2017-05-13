@@ -15,4 +15,8 @@
     <string name="type_science">理科</string>
     <string name="type_other">其他</string>
 
+    <string name="about_desc">\t\t\t\t荆楚大学堂，一个在线实用技能学习平台，该平台于2017年6月底正式上线，主要为学习者
+        提供海量、优质的课程，课程结构严谨，用户可以根据自身的学习程度，自主安排学习进度。荆楚大学堂的宗旨是，为每一位想
+        真真正正学到些实用知识、技能的学习者，提供贴心的一站式学习服务。\n\t\t\t\t荆楚大学堂,学习成就梦想</string>
+
 </resources>

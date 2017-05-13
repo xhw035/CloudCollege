@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import com.cloud.college.network.UserInfoData;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.hss01248.dialog.StyledDialog.context;
 
 /**
  * Created by xiao on 2017/5/8.
@@ -136,5 +140,44 @@ public class SpUitl {
         return !TextUtils.isEmpty(getUserID(context));
     }
 
+    public static String getPhone(Context context){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        return sp.getString("phone", "");
+    }
+
+    public static void setPhone(Context context,String phone){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("phone", phone).commit();
+    }
+
+    public  static  void addUserInfoCache(Context context, UserInfoData data){
+        SharedPreferences sp = context.getSharedPreferences("userInfoCache", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear().commit();
+        editor.putString("nickname",data.getNickname());
+        editor.putString("avatar",data.getAvatar());
+        editor.commit();
+
+    }
+
+    public  static  UserInfoData getUserInfoCache(Context context){
+        SharedPreferences sp = context.getSharedPreferences("userInfoCache", Context.MODE_PRIVATE);
+        UserInfoData data = new UserInfoData();
+        data.setNickname(sp.getString("nickname",""));
+        data.setAvatar(sp.getString("avatar",""));
+        return data;
+    }
+
+    public  static  boolean isFirstTime(Context context){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        return sp.getBoolean("isFirstTime", true);
+    }
+
+    public  static  void setFirstTime(boolean notFirst){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("isFirstTime", notFirst).commit();
+    }
 
 }

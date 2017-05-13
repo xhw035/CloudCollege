@@ -19,7 +19,7 @@ import com.cloud.college.R;
 import com.cloud.college.network.SearchResultData;
 import com.cloud.college.uitl.MyApplication;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
+import com.cloud.college.uitl.NetworkUtil;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -88,7 +88,7 @@ public class SearchResultFragment extends Fragment implements AdapterView.OnItem
 
         searchCall = MyApplication.getMyService().getSearchResult(typeID,keywords);
 //        searchCall = MyApplication.getMyService().getSearchResult();
-        if(!networkUtil.isNetworkAvailable(getActivity())){
+        if(!NetworkUtil.isNetworkAvailable(getActivity())){
             loading.setVisibility(View.GONE);
             listview.setVisibility(View.GONE);
             tip.setText("网络异常，无法连接服务器...");

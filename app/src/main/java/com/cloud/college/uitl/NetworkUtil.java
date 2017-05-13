@@ -4,13 +4,11 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import java.io.IOException;
-
 /**
  * Created by xiao on 2017/5/9.
  */
 
-public class networkUtil {
+public class NetworkUtil {
 
     public static boolean isNetworkAvailable(final Context context){
         ConnectivityManager cm = (ConnectivityManager) context
@@ -31,7 +29,7 @@ public class networkUtil {
                 for (int i = 0; i < info.length; i++) {
                     if (info[i].getState() == NetworkInfo.State.CONNECTED) {
                         //在网络连接的情况下测试能否ping通
-                        Runtime runtime = Runtime.getRuntime();
+                        /*Runtime runtime = Runtime.getRuntime();
                         try {
                             //Process iProcess = runtime.exec("/system/bin/ping -c 1 "+MyApplication.serverHost);
                             Process iProcess = runtime.exec("/system/bin/ping -c 1 www.baidu.com");
@@ -39,7 +37,8 @@ public class networkUtil {
                             return (exitValue == 0);
                         } catch (IOException e){ e.printStackTrace(); }
                         catch (InterruptedException e) { e.printStackTrace(); }
-                        return false;
+                        return false;*/
+                        return true;
                     }
                 }
             }

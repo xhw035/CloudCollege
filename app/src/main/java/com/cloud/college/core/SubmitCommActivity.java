@@ -17,7 +17,7 @@ import com.cloud.college.R;
 import com.cloud.college.network.universalResponseData;
 import com.cloud.college.uitl.MyApplication;
 import com.cloud.college.uitl.SpUitl;
-import com.cloud.college.uitl.networkUtil;
+import com.cloud.college.uitl.NetworkUtil;
 import com.hss01248.dialog.StyledDialog;
 import com.hss01248.dialog.interfaces.MyDialogListener;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -136,7 +136,7 @@ public class SubmitCommActivity extends Activity {
             .setDimAmount(0.5f)
             .show();
 
-            if(!networkUtil.isNetworkAvailable(mContext)){
+            if(!NetworkUtil.isNetworkAvailable(mContext)){
                 kProgressHUD.dismiss();
                 Toasty.error(mContext,"网络异常，无法连接服务器！").show();
                 return ;
@@ -159,7 +159,7 @@ public class SubmitCommActivity extends Activity {
                     if(response.body().getState() == 0){
                         kProgressHUD.dismiss();
                         TastyToast.makeText(mContext, "评论成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-                        setResult(RESULT_OK);
+                        setResult(0);
                         finish();
                     }else {
                         kProgressHUD.dismiss();

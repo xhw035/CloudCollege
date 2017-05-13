@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@color/dark"
+	android:fitsSystemWindows="true">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/login_bg">
+
+		<RelativeLayout
+			android:id="@+id/pwdTop"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_alignParentTop="true"
+			android:background="@color/dark"
+			android:orientation="horizontal" ><!-- #867AA0 -->
+
+			<ImageView
+				android:id="@+id/pwdBack"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="15dp"
+				android:scaleType="centerCrop"
+				android:src="@drawable/img_back" />
+
+			<TextView
+				android:id="@+id/pwdTitle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:ellipsize="end"
+				android:singleLine="true"
+				android:textColor="#fff"
+				android:textSize="20sp" />
+
+		</RelativeLayout>
+
+
+		<!-- 密码框1 -->
+		<EditText
+			android:id="@+id/pwd1"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="150dp"
+			android:background="@drawable/login_password_shape"
+			android:inputType="textPassword"
+			android:maxLength="32"
+			android:paddingLeft="50dp"
+			android:paddingRight="50dp"
+			android:textColor="#000000"
+			android:textCursorDrawable="@null" />
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@id/pwd1"
+			android:layout_alignTop="@id/pwd1"
+			android:layout_alignLeft="@id/pwd1"
+			android:layout_marginLeft="10dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/login_icon_pwd" />
+
+
+		<!--密码框1删除按钮  -->
+		<ImageButton
+			android:id="@+id/pwd_delete_button1"
+			android:layout_width="13dp"
+			android:layout_height="13dp"
+			android:layout_alignBottom="@id/pwd1"
+			android:layout_alignRight="@id/pwd1"
+			android:layout_alignTop="@id/pwd1"
+			android:layout_marginBottom="15dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="15dp"
+			android:background="@drawable/login_account_del"
+			android:scaleType="centerCrop"
+			android:visibility="gone" />
+
+		<!--密码框2-->
+		<EditText
+			android:id="@+id/pwd2"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_below="@id/pwd1"
+			android:layout_marginTop="20dp"
+			android:layout_alignLeft="@id/pwd1"
+			android:layout_alignRight="@id/pwd1"
+			android:paddingLeft="50dp"
+			android:paddingRight="50dp"
+			android:inputType="textPassword"
+			android:maxLength="32"
+			android:background="@drawable/login_password_shape"
+			android:textColor="#000000"
+			android:textCursorDrawable="@null"
+			/>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@id/pwd2"
+			android:layout_alignLeft="@id/pwd2"
+			android:layout_alignTop="@id/pwd2"
+			android:layout_marginLeft="10dp"
+			android:scaleType="fitCenter"
+			android:src="@drawable/login_icon_pwd" />
+
+		<!--密码框2删除按钮  -->
+		<ImageButton
+			android:id="@+id/pwd_delete_button2"
+			android:layout_width="13dp"
+			android:layout_height="13dp"
+			android:layout_alignBottom="@id/pwd2"
+			android:layout_alignRight="@id/pwd2"
+			android:layout_alignTop="@id/pwd2"
+			android:layout_marginBottom="15dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginTop="15dp"
+			android:background="@drawable/login_account_del"
+			android:scaleType="centerCrop"
+			android:visibility="gone" />
+
+
+		<!--登录按钮  -->
+		<Button
+			android:id="@+id/pwdButton"
+			android:layout_width="match_parent"
+			android:layout_height="40dp"
+			android:layout_below="@id/pwd2"
+			android:layout_marginTop="40dp"
+			android:layout_alignLeft="@id/pwd2"
+			android:layout_alignRight="@id/pwd2"
+			android:background="@drawable/login_button_shape"
+			android:gravity="center_vertical|center_horizontal"
+			android:text=""
+			android:textColor="@android:color/white"
+			android:textSize="18sp"
+			/>
+
+
+	</RelativeLayout>
+
+</LinearLayout>
