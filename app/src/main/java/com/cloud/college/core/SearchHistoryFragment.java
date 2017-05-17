@@ -1,5 +1,6 @@
 package com.cloud.college.core;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,7 @@ public class SearchHistoryFragment extends Fragment {
     public SearchHistoryFragment() {
     }
 
+    @SuppressLint("ValidFragment")
     public SearchHistoryFragment(EditText editText) {
         mEditText = editText;
     }

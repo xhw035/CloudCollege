@@ -1,5 +1,6 @@
 package com.xiao.magictimeline;
 
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,7 +24,12 @@ public class CatalogFragment extends Fragment {
     private List<CatalogModel> list;
     public  CatalogAdapter adpter;
 
-    public CatalogFragment(List<CatalogModel> list,CatalogAdapter.OnItemClickListener listener) {
+    public CatalogFragment() {
+        listener = null;
+    }
+
+    @SuppressLint("ValidFragment")
+    public CatalogFragment(List<CatalogModel> list, CatalogAdapter.OnItemClickListener listener) {
         this.list = list;
         this.listener=listener;
     }

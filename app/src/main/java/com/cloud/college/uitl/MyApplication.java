@@ -41,8 +41,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyApplication extends Application{
 
-    public static String serverHost = "192.168.191.1";
-    //public static String serverHost = "123.207.237.185";
+    //public static String serverHost = "192.168.191.1";
+    public static String serverHost = "123.207.237.185";
     //public static String serverHost = "xhw123.cn";
     public static boolean refreshCollection = true;
     public static boolean refreshMine = true;
@@ -57,7 +57,7 @@ public class MyApplication extends Application{
         StyledDialog.init(this);
         registCallback();
         initRetrofit();
-        initTest();
+        //initTest();
     }
 
 

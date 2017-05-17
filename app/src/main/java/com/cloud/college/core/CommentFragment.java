@@ -45,7 +45,6 @@ import retrofit2.Response;
 public class CommentFragment extends Fragment {
 
     @BindView(R.id.commentListView) ListView commentListView;
-    @BindView(R.id.noCommm) LinearLayout noCommm;
     @BindView(R.id.commException) LinearLayout commException;
     @BindView(R.id.commLoading) LinearLayout commLoading;
 
@@ -86,7 +85,6 @@ public class CommentFragment extends Fragment {
 
     public void initData(){
         commentListView.setVisibility(View.GONE);
-        noCommm.setVisibility(View.GONE);
         commException.setVisibility(View.GONE);
         commLoading.setVisibility(View.VISIBLE);
 
@@ -94,7 +92,6 @@ public class CommentFragment extends Fragment {
         commCall = MyApplication.getMyService().getComment(SpUitl.getUserID(mContext),((DetailActivity) mContext).courseID);
         if(!NetworkUtil.isNetworkAvailable(mContext)){
             commentListView.setVisibility(View.GONE);
-            noCommm.setVisibility(View.GONE);
             commException.setVisibility(View.VISIBLE);
             commLoading.setVisibility(View.GONE);
             Toasty.error(mContext,"网络异常，无法连接服务器！").show();
@@ -106,7 +103,6 @@ public class CommentFragment extends Fragment {
             public void onResponse(Call<CommentData> call, Response<CommentData> response) {
                 if(response.body()==null){
                     commentListView.setVisibility(View.GONE);
-                    noCommm.setVisibility(View.GONE);
                     commException.setVisibility(View.VISIBLE);
                     commLoading.setVisibility(View.GONE);
                     Toasty.error(mContext,"服务器异常，加载数据出错！").show();
@@ -121,7 +117,6 @@ public class CommentFragment extends Fragment {
             @Override
             public void onFailure(Call<CommentData> call, Throwable t) {
                 commentListView.setVisibility(View.GONE);
-                noCommm.setVisibility(View.GONE);
                 commException.setVisibility(View.VISIBLE);
                 commLoading.setVisibility(View.GONE);
                 Toasty.error(mContext,"加载数据失败，请稍候重试！").show();
@@ -143,8 +138,12 @@ public class CommentFragment extends Fragment {
             list.add(model);
         }
         if(list.size()==0){
-            commentListView.setVisibility(View.GONE);
-            noCommm.setVisibility(View.VISIBLE);
+            adapter = new CommentAdapter(mContext, list);
+            commentListView.setAdapter(adapter);
+            View footerView = View.inflate(mContext, R.layout.view_footer_comment, null);
+            commentListView.addFooterView(footerView);
+
+            commentListView.setVisibility(View.VISIBLE);
             commException.setVisibility(View.GONE);
             commLoading.setVisibility(View.GONE);
         }else {
@@ -152,7 +151,6 @@ public class CommentFragment extends Fragment {
             commentListView.setAdapter(adapter);
 
             commentListView.setVisibility(View.VISIBLE);
-            noCommm.setVisibility(View.GONE);
             commException.setVisibility(View.GONE);
             commLoading.setVisibility(View.GONE);
         }
@@ -188,7 +186,7 @@ public class CommentFragment extends Fragment {
                         }
 
                         if(response.body().getState()==0){
-                            Toasty.error(mContext,"评分成功").show();
+                            Toasty.success(mContext,"评分成功").show();
                             return;
                         }
 

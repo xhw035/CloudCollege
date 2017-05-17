@@ -63,6 +63,7 @@ public class StudyCenterFragment extends Fragment  {
 
     @BindView(R.id.centerEmptyTip) TextView centerEmptyTip;
 
+    private View view;
     private Context mContext;
     private collectAdapter collectAdapter;
     private Call<CollectInfoData> collectCall;
@@ -72,7 +73,7 @@ public class StudyCenterFragment extends Fragment  {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_studycenter,container,false);
+         view = inflater.inflate(R.layout.fragment_studycenter,container,false);
         mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -93,6 +94,7 @@ public class StudyCenterFragment extends Fragment  {
         //collectBtn.setChecked(true);
         OnSwipeListener listener = new OnSwipeListener(getActivity());
         collectAdapter = new collectAdapter(getActivity(),listener);
+        collectListview = (ListView)view.findViewById(R.id.collectListview);
         collectListview.setAdapter(collectAdapter);
 
         downloadListview.setVisibility(View.GONE);

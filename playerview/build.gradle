@@ -6,6 +6,9 @@ android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
 
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 22

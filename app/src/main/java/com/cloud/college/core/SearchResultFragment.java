@@ -1,5 +1,6 @@
 package com.cloud.college.core;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +19,8 @@ import com.bumptech.glide.Glide;
 import com.cloud.college.R;
 import com.cloud.college.network.SearchResultData;
 import com.cloud.college.uitl.MyApplication;
-import com.cloud.college.uitl.SpUitl;
 import com.cloud.college.uitl.NetworkUtil;
+import com.cloud.college.uitl.SpUitl;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -56,6 +57,7 @@ public class SearchResultFragment extends Fragment implements AdapterView.OnItem
     public SearchResultFragment() {
     }
 
+    @SuppressLint("ValidFragment")
     public SearchResultFragment(String typeID, String keywords) {
         this.typeID = typeID;
         this.keywords = keywords;

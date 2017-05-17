@@ -164,15 +164,13 @@ public class MineFragment extends Fragment {
         //处理登录
         if(SpUitl.isLogin(mContext)){
             //================已登录，点击头像换头像=========================
-            Intent intent = new Intent(mContext,LoginActivity.class);
-            intent.putExtra("isBack", true);
-            startActivityForResult(intent,0);
-            getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+
         }else{
             //未登录，点击跳转去登录页
             Intent intent = new Intent(getActivity(),LoginActivity.class);
             intent.putExtra("isBack", true);
             startActivityForResult(intent, 0);
+            getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
         }
     }
 

@@ -128,7 +128,7 @@ public interface MyService {
     /**
      * 提交评分
      */
-    @GET("/edu/home/android/null/data")
+    @GET("/edu/home/android/score/add")
     Call<universalResponseData> submitScore(@Query("userID") String userID, @Query("videoID") String videoID, @Query("score") float score);
 
 
@@ -149,7 +149,7 @@ public interface MyService {
     /**
      * 获取用户昵称头像
      */
-    @GET("/edu/home/android/null/data")
+    @GET("/edu/home/android/getnickNameImg/data")
     Call<UserInfoData> getUserInfo(@Query("userID") String userID);
 
 

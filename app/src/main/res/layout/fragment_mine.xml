@@ -145,7 +145,7 @@
                     android:layout_toRightOf="@id/mineSettingImg"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="设       置"
+                    android:text="设\t\t\t\t置"
                     android:textColor="#000"
                     android:textSize="16sp"/>
 

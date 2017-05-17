@@ -26,7 +26,7 @@ import java.net.URL;
 
 public class UpdateManager {
 
-    protected static String updateUrl="http://www.xhw123.cn/cloudCollege/updateInfo.json";
+    protected static String updateUrl="http://123.207.237.185:8080/edu/home/android/updatejson/download";
 
 	Context mContext;
 	String  downApkUrl;
@@ -205,6 +205,7 @@ public class UpdateManager {
                 }
             }).create();
 	 dialog.setCancelable(false);
+     // dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 	 dialog.show();
 		
 	}

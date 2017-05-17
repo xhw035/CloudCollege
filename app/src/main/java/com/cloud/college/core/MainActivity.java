@@ -55,7 +55,9 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MyApplication.checkUpdate(this,true);
+        //自动检查更新
+        //MyApplication.checkUpdate(this,true);
+
     }
 
     private void initView() {

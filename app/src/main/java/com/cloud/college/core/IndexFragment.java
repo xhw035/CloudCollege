@@ -59,7 +59,7 @@ import retrofit2.Response;
  * DESC:首页对应的Fragment
  */
 
-public class IndexFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener  {
+public class IndexFragment extends Fragment implements ViewPager.OnPageChangeListener, OnItemClickListener{
 
     @BindView(R.id.convenientBanner) ConvenientBanner convenientBanner;
 

@@ -180,4 +180,15 @@ public class SpUitl {
         editor.putBoolean("isFirstTime", notFirst).commit();
     }
 
+    public static int getLastVersionCode(Context context){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        return sp.getInt("versionCode", 0);
+    }
+
+    public static void setLastVersionCode(Context context,int code){
+        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("versionCode", code).commit();
+    }
+
 }

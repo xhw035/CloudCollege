@@ -9,15 +9,19 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.cloud.college.R;
+import com.cloud.college.uitl.DimensionUtil;
 import com.cloud.college.uitl.SpUitl;
+import com.cloud.college.uitl.UpdateManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SplashActivity extends Activity{
+public class SplashActivity extends Activity implements View.OnClickListener{
 	private ViewPager mViewPager;
     private Context mContext;
     private LayoutInflater mInflater;
@@ -30,12 +34,17 @@ public class SplashActivity extends Activity{
         mViewPager = (ViewPager)findViewById(R.id.viewpager);
         mInflater = LayoutInflater.from(this);
         initView();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void initView() {
         //第一登录显示引导页
-        if (SpUitl.isFirstTime(mContext)) {
+        if (SpUitl.isFirstTime(mContext)
+                ||UpdateManager.getVersionCode(mContext)>SpUitl.getLastVersionCode(mContext)) {
 
             ViewPager.LayoutParams params = new ViewPager.LayoutParams();
             params.height = ViewPager.LayoutParams.MATCH_PARENT;
@@ -51,10 +60,24 @@ public class SplashActivity extends Activity{
             view3.setBackgroundResource(R.drawable.guide_page3);
             view3.setLayoutParams(params);
 
-    		//View view1 = mInflater.inflate(R.layout.guide_item1, null);
-    		//View view2 = mInflater.inflate(R.layout.guide_item2, null);
-    		//View view3 = mInflater.inflate(R.layout.guide_item3, null);
-    		View view4 = mInflater.inflate(R.layout.guide_item4, null);
+            Button button = new Button(mContext);
+            button.setPadding(DimensionUtil.dp2px(mContext,60),0,DimensionUtil.dp2px(mContext,60),0);
+            button.setBackgroundResource(R.drawable.guide_button_shape);
+            button.setTextColor(getResources().getColor(R.color.white));
+            button.setText("立即体验");
+            button.setOnClickListener(this);
+
+            RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+            btnParams.bottomMargin = DimensionUtil.dp2px(mContext,70);
+            btnParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            btnParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+
+            RelativeLayout view4 = new RelativeLayout(mContext);
+            view4.setBackgroundResource(R.drawable.guide_page4);
+            view4.setLayoutParams(params);
+            view4.addView(button,btnParams);
+
 
     		final ArrayList<View> views = new ArrayList<View>();
     		views.add(view1);
@@ -64,14 +87,21 @@ public class SplashActivity extends Activity{
 
     		MyPagerAdapter mPagerAdapter = new MyPagerAdapter(views);
     		mViewPager.setAdapter(mPagerAdapter);
+            SpUitl.setLastVersionCode(mContext, UpdateManager.getVersionCode(mContext));
 
 		}
 		//以后都显示闪屏
         else {
+            ViewPager.LayoutParams params = new ViewPager.LayoutParams();
+            params.height = ViewPager.LayoutParams.MATCH_PARENT;
+            params.width = ViewPager.LayoutParams.MATCH_PARENT;
 
-            View view = mInflater.inflate(R.layout.splash_page, null);
+            View view = new View(mContext);
+            view.setBackgroundResource(R.drawable.splash_bg);
+            view.setLayoutParams(params);
             final ArrayList<View> views = new ArrayList<View>();
             views.add(view);
+
             MyPagerAdapter mPagerAdapter = new MyPagerAdapter(views);
             mViewPager.setAdapter(mPagerAdapter);
 
@@ -81,21 +111,21 @@ public class SplashActivity extends Activity{
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-
                 }
             }, 3000);
         }
     }
 
     //点击欢迎页最后一页的按钮
-    public void next(View v) {
+    @Override
+    public void onClick(View v) {
 		Intent intent = new Intent();
 		intent.setClass(this,MainActivity.class);
 		startActivity(intent);
         SpUitl.setFirstTime(false);
 		this.finish();
-	}
-	
+    }
+
 
 }
 
